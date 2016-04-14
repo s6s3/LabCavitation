@@ -303,7 +303,7 @@ typedef struct{
 
   char   nameOfLogFile[SIZE_OF_FILE_NAME];
   char   nameOfSamplingDataFileForForcedMotionOfRigidBody[SIZE_OF_FILE_NAME];
-  char   nameOfSamplingDataFileForForcedMotionOfWall[SIZE_OF_FILE_NAME];
+  //char   nameOfSamplingDataFileForForcedMotionOfWall[SIZE_OF_FILE_NAME];
 
   char   nameOfDesignationFileForWritingPressureFile[SIZE_OF_FILE_NAME];
   char   nameOfOutputPressureFile[SIZE_OF_FILE_NAME];

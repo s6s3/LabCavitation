@@ -1646,19 +1646,22 @@ FILE_readDataFile( void ){
   FILE_skipComment(fp);
   FILE_skipComment(fp);
 
+  FILE_scanOnOff(fp, &parameter.flagOfKondoAndKoshizukaModel
+	  , "parameter.flagOfKondoAndKoshizukaModel");
+  FILE_skipComment(fp);
+  FILE_scanDouble(fp, &parameter.valueOfAlpha
+	  , "parameter.valueOfAlpha");
+  FILE_skipComment(fp);
+  FILE_scanDouble(fp, &parameter.valueOfBeta
+	  , "parameter.valueOfBeta");
+  FILE_skipComment(fp);
+  FILE_scanDouble(fp, &parameter.valueOfGamma
+	  , "parameter.valueOfGamma");
+  FILE_skipComment(fp);
 
-  FILE_skipComment(fp);
-  FILE_skipComment(fp);
 
-
-  FILE_skipComment(fp);
-  FILE_skipComment(fp);
-  FILE_skipComment(fp);
-
-
-  FILE_skipComment(fp);
-  FILE_scanChar( fp, parameter.nameOfSamplingDataFileForForcedMotionOfWall
-                   ,"parameter.nameOfSamplingDataFileForForcedMotionOfWall");
+  //FILE_scanChar( fp, parameter.nameOfSamplingDataFileForForcedMotionOfWall
+  //                 ,"parameter.nameOfSamplingDataFileForForcedMotionOfWall");
 
   FILE_skipComment(fp);
   FILE_skipComment(fp);

@@ -162,6 +162,9 @@ CG_setSourceTerm(double* sourceTerm,double* totalmap, int calcNum) {
 				particle.sourceTermOfPressure[iParticle] = (NumberOfDimensions*sigma / (dt*n0)) + parameter.valueOfGamma*((particle.particleNumberDensity_previous[iParticle] - n0) / (n0*dt_squared));
 				*/
 			}
+			else if (parameter.flagOfKondoAndKoshizukaModel == ON) {
+
+			}
 			else {
 				sourceTerm[iCalc] = (particle.particleNumberDensity[iParticle] - n0) / (dt_squared * n0);
 			}
