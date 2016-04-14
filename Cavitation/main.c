@@ -51,8 +51,6 @@
 #include "inflow.h"
 #include "cavitation.h"
 
-//github test 4/14
-
 int
 main( int argumentCount, char **argumentVector ){
 	_controlfp(0, _EM_ZERODIVIDE | _EM_UNDERFLOW | _EM_OVERFLOW | _EM_INVALID);//0œZŒŸo

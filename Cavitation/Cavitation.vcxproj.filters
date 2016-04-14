@@ -234,4 +234,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="input.bubble" />
+    <None Include="input.data" />
+    <None Include="input.grid" />
+  </ItemGroup>
 </Project>

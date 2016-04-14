@@ -337,6 +337,11 @@ typedef struct{
   double valueOfGamma;
   double valueOfC;
 
+  int	 flagOfKondoAndKoshizukaModel;
+  double valueOfAlpha;
+  double valueOfBeta;
+  double valueOfGamma;
+
 
   int	 flagOfOutflowBoundaryCondition;
   int    flagOfNegativePressure;
