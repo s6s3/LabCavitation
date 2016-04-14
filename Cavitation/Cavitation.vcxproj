@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2B7D6EE6-E933-4CC2-BF5D-691FBF2D82BA}</ProjectGuid>
+    <RootNamespace>Cavitation</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="bubble.c" />
+    <ClCompile Include="bucket.c" />
+    <ClCompile Include="buoyancy.c" />
+    <ClCompile Include="cavitation.c" />
+    <ClCompile Include="cg.c" />
+    <ClCompile Include="collision.c" />
+    <ClCompile Include="convection.c" />
+    <ClCompile Include="copy.c" />
+    <ClCompile Include="density.c" />
+    <ClCompile Include="distance.c" />
+    <ClCompile Include="domain.c" />
+    <ClCompile Include="file.c" />
+    <ClCompile Include="finalize.c" />
+    <ClCompile Include="forcedMotion.c" />
+    <ClCompile Include="gradient.c" />
+    <ClCompile Include="gravity.c" />
+    <ClCompile Include="inflow.c" />
+    <ClCompile Include="init.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="mathe.c" />
+    <ClCompile Include="maxmin.c" />
+    <ClCompile Include="memory.c" />
+    <ClCompile Include="neigh.c" />
+    <ClCompile Include="nzero.c" />
+    <ClCompile Include="object.c" />
+    <ClCompile Include="other.c" />
+    <ClCompile Include="outflow.c" />
+    <ClCompile Include="pressure.c" />
+    <ClCompile Include="quaternion.c" />
+    <ClCompile Include="solver.c" />
+    <ClCompile Include="sort.c" />
+    <ClCompile Include="stack.c" />
+    <ClCompile Include="timer.c" />
+    <ClCompile Include="viscosity.c" />
+    <ClCompile Include="weight.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bubble.h" />
+    <ClInclude Include="bucket.h" />
+    <ClInclude Include="buoyancy.h" />
+    <ClInclude Include="cavitation.h" />
+    <ClInclude Include="cg.h" />
+    <ClInclude Include="collision.h" />
+    <ClInclude Include="convection.h" />
+    <ClInclude Include="copy.h" />
+    <ClInclude Include="define.h" />
+    <ClInclude Include="density.h" />
+    <ClInclude Include="distance.h" />
+    <ClInclude Include="domain.h" />
+    <ClInclude Include="extern.h" />
+    <ClInclude Include="file.h" />
+    <ClInclude Include="finalize.h" />
+    <ClInclude Include="forcedMotion.h" />
+    <ClInclude Include="gradient.h" />
+    <ClInclude Include="gravity.h" />
+    <ClInclude Include="inflow.h" />
+    <ClInclude Include="init.h" />
+    <ClInclude Include="mathe.h" />
+    <ClInclude Include="maxmin.h" />
+    <ClInclude Include="memory.h" />
+    <ClInclude Include="neigh.h" />
+    <ClInclude Include="nzero.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="other.h" />
+    <ClInclude Include="outflow.h" />
+    <ClInclude Include="pressure.h" />
+    <ClInclude Include="quaternion.h" />
+    <ClInclude Include="solver.h" />
+    <ClInclude Include="sort.h" />
+    <ClInclude Include="stack.h" />
+    <ClInclude Include="struct.h" />
+    <ClInclude Include="timer.h" />
+    <ClInclude Include="viscosity.h" />
+    <ClInclude Include="weight.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
