@@ -334,7 +334,6 @@ typedef struct{
   char   nameOfBubbleInputFile[SIZE_OF_FILE_NAME];
     
   int    flagOfTanakaAndMasunagaModel;
-  double valueOfGamma;
   double valueOfC;
 
   int	 flagOfKondoAndKoshizukaModel;
