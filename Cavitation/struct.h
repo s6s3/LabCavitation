@@ -26,6 +26,7 @@ typedef struct{
 
   double *particleNumberDensity; 
   double *particleNumberDensity_previous;
+  double *particleNumberDensity_prevstep;
   double *particleNumberDensity_weightIsOne;
   double *particleNumberDensity_withConstantWeight;
 

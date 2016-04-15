@@ -196,9 +196,9 @@
     <ClInclude Include="weight.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="input.bubble" />
-    <None Include="input.data" />
-    <None Include="input.grid" />
+    <None Include="input\input.bubble" />
+    <None Include="input\input.data" />
+    <None Include="input\input.grid" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

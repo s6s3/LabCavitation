@@ -87,6 +87,7 @@ PRESSURE_setSourceTerm( void ){
   double distanceIJ;
   double distanceIJ_squared;
   double sigma;
+  double s_0, s_1, s_2;
     
   double dt = timer.dt;
   double weightIJ;
@@ -131,7 +132,16 @@ PRESSURE_setSourceTerm( void ){
            }
            particle.sourceTermOfPressure[iParticle]=(NumberOfDimensions*sigma/(dt*n0))+parameter.valueOfGamma*((particle.particleNumberDensity_previous[iParticle]-n0)/(n0*dt_squared));
                                                       
-        }else{
+        }
+		else if (parameter.flagOfKondoAndKoshizukaModel == ON) {
+			s_2 = particle.particleNumberDensity[iParticle] - 2 * particle.particleNumberDensity_previous[iParticle] + particle.particleNumberDensity_prevstep[iParticle];
+			s_1 = particle.particleNumberDensity_previous[iParticle] - particle.particleNumberDensity_prevstep[iParticle];
+			s_0 = particle.particleNumberDensity_previous[iParticle] - particle.particleNumberDensity[iParticle];
+
+			particle.sourceTermOfPressure[iParticle] = (s_2 * parameter.valueOfAlpha + s_1 * parameter.valueOfBeta + s_0 * parameter.valueOfGamma) / (dt_squared * n0);
+
+		}
+		else{
            particle.sourceTermOfPressure[iParticle] = ( particle.particleNumberDensity[iParticle] - n0 )/( dt_squared * n0 ); 
         }
 
