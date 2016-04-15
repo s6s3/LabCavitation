@@ -250,10 +250,11 @@ MEMORY_allocateMemoryForParticleStructure( void ){
   particle.pressure_previous = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.pressure_previous");
 
   particle.minPressureAmongNeighbors = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.minPressureAmongNeighbors");
+  
+  particle.particleNumberDensity_prevstep = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.particleNumberDensity_prevstep");
 
   particle.particleNumberDensity          = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.particleNumberDensity");
   particle.particleNumberDensity_previous = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.particleNumberDensity_previous");
-  particle.particleNumberDensity_prevstep = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.particleNumberDensity_prevstep");
   particle.particleNumberDensity_eachParticleType = MEMORY_allocateMemoryFor2dimDoubleArray( particle.totalNumber_upperLimit,  parameter.numberOfParticleTypes, "particleNumberDensity_eachParticleType");
 
   if(parameter.flagOfBiCG == ON){

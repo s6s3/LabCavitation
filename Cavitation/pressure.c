@@ -136,7 +136,7 @@ PRESSURE_setSourceTerm( void ){
 		else if (parameter.flagOfKondoAndKoshizukaModel == ON) {
 			s_2 = particle.particleNumberDensity[iParticle] - 2 * particle.particleNumberDensity_previous[iParticle] + particle.particleNumberDensity_prevstep[iParticle];
 			s_1 = particle.particleNumberDensity_previous[iParticle] - particle.particleNumberDensity_prevstep[iParticle];
-			s_0 = particle.particleNumberDensity_previous[iParticle] - particle.particleNumberDensity[iParticle];
+			s_0 = particle.particleNumberDensity_previous[iParticle] - n0;
 
 			particle.sourceTermOfPressure[iParticle] = (s_2 * parameter.valueOfAlpha + s_1 * parameter.valueOfBeta + s_0 * parameter.valueOfGamma) / (dt_squared * n0);
 

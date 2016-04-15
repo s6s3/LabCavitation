@@ -1951,11 +1951,11 @@ FILE_displayReadDataFile( void ){
     fprintf(FpForLog,"flagOfTanakaAndMasunagaModel(on/off)                    %s\n",FILE_returnOnOff(parameter.flagOfTanakaAndMasunagaModel));
     fprintf(FpForLog,"--on--valueOfGamma                   %lf\n",parameter.valueOfGamma);
     fprintf(FpForLog,"--on--valueOfC          %lf\n",parameter.valueOfC);
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#-----------------------------------------------------------------\n");
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
+  fprintf(FpForLog, "#--------KONDOandKOSHIZUKAModel---------------------------------- - \n");
+  fprintf(FpForLog,"flagOfKondoAndKoshizukaModel(on/off)               %s\n",FILE_returnOnOff(parameter.flagOfKondoAndKoshizukaModel));
+  fprintf(FpForLog, "--on---valueOfAlpha                                %lf\n", parameter.valueOfAlpha);
+  fprintf(FpForLog, "--on---valueOfBeta                                 %lf\n", parameter.valueOfBeta);
+  fprintf(FpForLog, "--on---valueOfGamma                                %lf\n", parameter.valueOfGamma);
   fprintf(FpForLog,"#############                                      ***\n");
   fprintf(FpForLog,"#-----------------------------------------------------------------\n");
   fprintf(FpForLog,"#############                                      ***\n");

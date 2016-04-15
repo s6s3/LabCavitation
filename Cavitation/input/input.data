@@ -142,11 +142,11 @@ forcedMotionOfRigidBody(on/off)                    off
 flagOfTanakaAndMasunagaModel(on/off)               off                   
 --on--valueOfGamma                                 0.01
 --on--valueOfC                                     1.0
-#--------KONDOandKOSHIZUKAModel----------------------------------
-flagOfKondoAndKoshizukaModel(on/off)               on 
+#--------KONDOandKOSHIZUKAModel-----------------------------------
+flagOfKondoAndKoshizukaModel(on/off)               off 
 --on---valueOfAlpha                                1.0
 --on---valueOfBeta                                 1.0
---on---valueOfGamma                                0.0
+--on---valueOfGamma                                1.0
 #-----------------------------------------------------------------
 ########                                           ***
 ########                                           ***
