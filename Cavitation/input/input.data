@@ -78,7 +78,7 @@ flagOfViscosityCalculation(on/off)                 on
 --on--kinematicViscosity(m^2/s)                    1.0e-6
 #--------Bubble---------------------------------------------------
 flagOfBubbleCalculationy(on/off)                   on                 
---on--nameOfInputfile                              input.bubble
+--on--nameOfInputfile                              input/input.bubble
 --on--numperOfParticleForCalculatingBeta           574                        
 --on--massDensityOfBubble(kg/m^3)                  8.98
 --on--gassConstant(J/K*mol)                        8.3144621
