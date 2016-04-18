@@ -1658,16 +1658,16 @@ FILE_readDataFile( void ){
   FILE_scanDouble(fp, &parameter.valueOfKondoGamma
 	  , "parameter.valueOfKondoGamma");
   FILE_skipComment(fp);
-
-
+  FILE_scanDouble(fp, &parameter.artificialPressure
+	  , "parameter.artificialPressure");
+  FILE_skipComment(fp);
+  FILE_scanDouble(fp, &parameter.radiusOfKondoCollision
+	  , "parameter.radiusOfKondoCollision");
+  FILE_skipComment(fp);
   //FILE_scanChar( fp, parameter.nameOfSamplingDataFileForForcedMotionOfWall
   //                 ,"parameter.nameOfSamplingDataFileForForcedMotionOfWall");
 
-  FILE_skipComment(fp);
-  FILE_skipComment(fp);
-  FILE_skipComment(fp);
 
-  FILE_skipComment(fp);
   FILE_skipComment(fp);
 
 
@@ -1956,8 +1956,8 @@ FILE_displayReadDataFile( void ){
   fprintf(FpForLog, "--on---valueOfKondoAlpha                                %lf\n", parameter.valueOfKondoAlpha);
   fprintf(FpForLog, "--on---valueOfKondoBeta                                 %lf\n", parameter.valueOfKondoBeta);
   fprintf(FpForLog, "--on---valueOfKondoGamma                                %lf\n", parameter.valueOfKondoGamma);
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#-----------------------------------------------------------------\n");
+  fprintf(FpForLog, "--on---artificialPressure                               %lf\n", parameter.artificialPressure);
+  fprintf(FpForLog, "--on---radiusOfCollision(ratio)                         %lf\n", parameter.radiusOfKondoCollision);
   fprintf(FpForLog,"#############                                      ***\n");
   fprintf(FpForLog,"#############                                      ***\n");
   fprintf(FpForLog,"#############                                      ***\n");

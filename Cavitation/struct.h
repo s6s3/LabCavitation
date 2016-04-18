@@ -342,6 +342,8 @@ typedef struct{
   double valueOfKondoAlpha;
   double valueOfKondoBeta;
   double valueOfKondoGamma;
+  double artificialPressure;
+  double radiusOfKondoCollision;
 
 
   int	 flagOfOutflowBoundaryCondition;

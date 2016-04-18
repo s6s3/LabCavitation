@@ -147,8 +147,8 @@ flagOfKondoAndKoshizukaModel(on/off)               on
 --on---valueOfAlpha                                1.0
 --on---valueOfBeta                                 1.0
 --on---valueOfGamma                                1.0
-#-----------------------------------------------------------------
-########                                           ***
+--on---artificialPressure                          100.0
+--on---radiusOfCollision(ratio)                    0.7
 ########                                           ***
 #-----------------------------------------------------------------
 ########                                           ***
