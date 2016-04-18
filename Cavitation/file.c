@@ -1649,14 +1649,14 @@ FILE_readDataFile( void ){
   FILE_scanOnOff(fp, &parameter.flagOfKondoAndKoshizukaModel
 	  , "parameter.flagOfKondoAndKoshizukaModel");
   FILE_skipComment(fp);
-  FILE_scanDouble(fp, &parameter.valueOfAlpha
-	  , "parameter.valueOfAlpha");
+  FILE_scanDouble(fp, &parameter.valueOfKondoAlpha
+	  , "parameter.valueOfKondoAlpha");
   FILE_skipComment(fp);
-  FILE_scanDouble(fp, &parameter.valueOfBeta
-	  , "parameter.valueOfBeta");
+  FILE_scanDouble(fp, &parameter.valueOfKondoBeta
+	  , "parameter.valueOfKondoBeta");
   FILE_skipComment(fp);
-  FILE_scanDouble(fp, &parameter.valueOfGamma
-	  , "parameter.valueOfGamma");
+  FILE_scanDouble(fp, &parameter.valueOfKondoGamma
+	  , "parameter.valueOfKondoGamma");
   FILE_skipComment(fp);
 
 
@@ -1953,9 +1953,9 @@ FILE_displayReadDataFile( void ){
     fprintf(FpForLog,"--on--valueOfC          %lf\n",parameter.valueOfC);
   fprintf(FpForLog, "#--------KONDOandKOSHIZUKAModel---------------------------------- - \n");
   fprintf(FpForLog,"flagOfKondoAndKoshizukaModel(on/off)               %s\n",FILE_returnOnOff(parameter.flagOfKondoAndKoshizukaModel));
-  fprintf(FpForLog, "--on---valueOfAlpha                                %lf\n", parameter.valueOfAlpha);
-  fprintf(FpForLog, "--on---valueOfBeta                                 %lf\n", parameter.valueOfBeta);
-  fprintf(FpForLog, "--on---valueOfGamma                                %lf\n", parameter.valueOfGamma);
+  fprintf(FpForLog, "--on---valueOfKondoAlpha                                %lf\n", parameter.valueOfKondoAlpha);
+  fprintf(FpForLog, "--on---valueOfKondoBeta                                 %lf\n", parameter.valueOfKondoBeta);
+  fprintf(FpForLog, "--on---valueOfKondoGamma                                %lf\n", parameter.valueOfKondoGamma);
   fprintf(FpForLog,"#############                                      ***\n");
   fprintf(FpForLog,"#-----------------------------------------------------------------\n");
   fprintf(FpForLog,"#############                                      ***\n");

@@ -335,12 +335,13 @@ typedef struct{
   char   nameOfBubbleInputFile[SIZE_OF_FILE_NAME];
     
   int    flagOfTanakaAndMasunagaModel;
+  double valueOfGamma;
   double valueOfC;
 
   int	 flagOfKondoAndKoshizukaModel;
-  double valueOfAlpha;
-  double valueOfBeta;
-  double valueOfGamma;
+  double valueOfKondoAlpha;
+  double valueOfKondoBeta;
+  double valueOfKondoGamma;
 
 
   int	 flagOfOutflowBoundaryCondition;
