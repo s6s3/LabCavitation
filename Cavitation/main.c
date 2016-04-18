@@ -63,7 +63,13 @@ main( int argumentCount, char **argumentVector ){
         TIMER_putTimeForwardByDt();
         
         TIMER_displayStateOfTimeStep_atAppropriateTime();
-		
+
+		if (parameter.flagOfKondoAndKoshizukaModel == ON) {
+			DENSITY_calculateParticleNumberDensity(particle.position);
+			COPY_copy1dimDoubleArray(particle.totalNumber, particle.particleNumberDensity_prevstep, particle.particleNumberDensity);
+
+		}
+
 		INFLOW_setVelocity();
 
         GRAVITY_calculateGravity();
