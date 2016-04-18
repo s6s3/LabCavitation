@@ -133,7 +133,7 @@ PRESSURE_setSourceTerm( void ){
            particle.sourceTermOfPressure[iParticle]=(NumberOfDimensions*sigma/(dt*n0))+parameter.valueOfGamma*((particle.particleNumberDensity_previous[iParticle]-n0)/(n0*dt_squared));
                                                       
         }
-		else if (parameter.flagOfKondoAndKoshizukaModel == ON) {
+		else if (parameter.flagOfKondoAndKoshizukaModel == ON && timer.iTimeStep>0) {
 			s_2 = particle.particleNumberDensity[iParticle] - 2 * particle.particleNumberDensity_previous[iParticle] + particle.particleNumberDensity_prevstep[iParticle];
 			s_1 = particle.particleNumberDensity_previous[iParticle] - particle.particleNumberDensity_prevstep[iParticle];
 			s_0 = particle.particleNumberDensity_previous[iParticle] - n0;
