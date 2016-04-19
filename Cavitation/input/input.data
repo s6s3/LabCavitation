@@ -1,12 +1,12 @@
 #######--FREQUENTLY-USED-DATA-#####################################
 #--------ParticleSize----------------------------------------------
-averageDistanceBetweenParticles(m)                 0.0002
+averageDistanceBetweenParticles(m)                 0.012
 #--------Time------------------------------------------------------
-finishTime(sec)                                    1.0e-2
-inititalDt(sec)                                    1.0e-6
+finishTime(sec)                                    3.0
+inititalDt(sec)                                    1.0e-4
 #--------File------------------------------------------------------
 TypeOfOutputInterval(simulationTime/timeStep)      simulationTime
---simulationTime---interval(sec)                   1.0e-5
+--simulationTime---interval(sec)                   1.0e-2
 --timeStep---------interval(timeStep)              1
 #--------Domain----------------------------------------------------
 numberOfDimensions(2or3)                           2 
@@ -63,10 +63,10 @@ numberOfParticleTypes                              4
 --typeNumberOfWallParticle                         2
 --typeNumberOfDummyWallParticle                    3
 #--------MassDensity----------------------------------------------
-massDensityOfType0(kg/m^3)                         998.4
-massDensityOfType1(kg/m^3)                         998.4
-massDensityOfType2(kg/m^3)                         998.4
-massDensityOfType3(kg/m^3)                         998.4
+massDensityOfType0(kg/m^3)                         1000
+massDensityOfType1(kg/m^3)                         1000
+massDensityOfType2(kg/m^3)                         1000
+massDensityOfType3(kg/m^3)                         1000
 #--------Compressibility------------------------------------------
 compressibilityOfType0                             1.0e-7
 compressibilityOfType1                             1.0e-7
@@ -85,7 +85,7 @@ flagOfBubbleCalculationy(on/off)                   off
 --on--temperature(K)                               292.0
 --on--headPressure(Pa)                             101325.0
 #--------OutflowBoundaryCondition---------------------------------
-flagOfOutflowBoundaryCondition(on/off)             on
+flagOfOutflowBoundaryCondition(on/off)             off
 negativePressure(on/off)                           off
 --on--positionVector[XDIM]                         0.0
 --on--positionVector[YDIM]                         0.0
@@ -99,7 +99,7 @@ negativePressure(on/off)                           off
 --on--depthOfOutflow(m)                            1.0
 --on--relaxationCoefficient                        10.0
 #--------InflowBoundaryCondition----------------------------------
-flagOfInflowBoundaryCondition(on/off)              on
+flagOfInflowBoundaryCondition(on/off)              off
 --on--typeNumberOfInflowParticle                   4
 --on--autoSettingOfInflowLevel(on/off)             on
 --------on--positionVector[XDIM]                   0.0
@@ -113,7 +113,7 @@ flagOfInflowBoundaryCondition(on/off)              on
 --on--inflowNumberOfBubbles                        20
 #--------Gravity--------------------------------------------------
 gravity[XDIM](m/s^2)                               0.0
-gravity[YDIM](m/s^2)                              -9.81
+gravity[YDIM](m/s^2)                              -9.8
 gravity[ZDIM](m/s^2)                               0.0
 #--------TimeDifference-------------------------------------------
 courantNumber                                      0.2
@@ -144,9 +144,9 @@ flagOfTanakaAndMasunagaModel(on/off)               off
 --on--valueOfC                                     1.0
 #--------KONDOandKOSHIZUKAModel-----------------------------------
 flagOfKondoAndKoshizukaModel(on/off)               on 
---on---valueOfAlpha                                1.0
---on---valueOfBeta                                 1.0
---on---valueOfGamma                                1.0
+--on---valueOfAlpha                                0.2
+--on---valueOfBeta                                 0.2
+--on---valueOfGamma                                0.2
 --on---artificialPressure                          100.0
 --on---radiusOfCollision(ratio)                    0.7
 ########                                           ***

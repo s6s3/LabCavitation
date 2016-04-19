@@ -454,6 +454,10 @@ void OUTFLOW_correctShibataOutflowVelocity() {
 
 	double du;
 
+	if (parameter.flagOfOutflowBoundaryCondition == OFF)return;
+	if (parameter.flagOfInflowBoundaryCondition == OFF)return;
+
+
 	
 	du =  (OUTFLOW_getCurrentNumberOfFluidParticles() - parameter.initTotalOutflow) * pow(particle.averageDistance, NumberOfDimensions)
 		/ (parameter.relaxationCoefficientOfBoundaryCondition * timer.dt * parameter.widthOfOutflow * parameter.depthOfOutflow);
