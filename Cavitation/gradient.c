@@ -32,7 +32,8 @@ GRADIENT_correctParticleVelocityAndPositionUsingPressureGradient( void ){
 }
 
 
-
+//豊田の手法（田中益永メソッド）
+//近藤越塚メソッドの人工的圧力を加える(4/19)
 void
 GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
 
@@ -101,7 +102,9 @@ GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
       absoluteValueOfVelocityCorrection  =  NumberOfDimensions * timer.dt;
       //absoluteValueOfVelocityCorrection *= (particle.pressure[jParticle] - particle.minPressureAmongNeighbors[iParticle])/distanceIJ;
       /*new*/
-      absoluteValueOfVelocityCorrection *= (particle.pressure[jParticle] + particle.pressure[iParticle])/distanceIJ;
+      
+	  if(parameter.flagOfKondoAndKoshizukaModel == ON) absoluteValueOfVelocityCorrection *= (particle.pressure[jParticle] + particle.pressure[iParticle] + parameter.artificialPressure) / distanceIJ;
+	  else absoluteValueOfVelocityCorrection *= (particle.pressure[jParticle] + particle.pressure[iParticle])/distanceIJ;
 
 
       absoluteValueOfVelocityCorrection *= WEIGHT_calculateWeightFunction(distanceIJ, parameter.radiusOfGradient);
@@ -109,19 +112,23 @@ GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
 
       absoluteValueOfVelocityCorrection /= (averageDensity * parameter.nZeroOfGradient);
 
+	  if (parameter.flagOfKondoAndKoshizukaModel == ON && distanceIJ < parameter.radiusOfKondoCollision)
+		  absoluteValueOfVelocityCorrection -= 0.01 * (parameter.radiusOfKondoCollision - distanceIJ);
+
+
 
       d_vx = absoluteValueOfVelocityCorrection * xji / distanceIJ;
       d_vy = absoluteValueOfVelocityCorrection * yji / distanceIJ;
 
       if(NumberOfDimensions == 3){
-	d_vz = absoluteValueOfVelocityCorrection * zji / distanceIJ;
+		d_vz = absoluteValueOfVelocityCorrection * zji / distanceIJ;
       }
 
       particle.velocity_correction[XDIM][iParticle] += d_vx;
       particle.velocity_correction[YDIM][iParticle] += d_vy;
 
       if(NumberOfDimensions == 3){
-	particle.velocity_correction[ZDIM][iParticle] += d_vz;
+		particle.velocity_correction[ZDIM][iParticle] += d_vz;
       }
 
 
