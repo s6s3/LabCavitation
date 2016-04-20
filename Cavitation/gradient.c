@@ -112,8 +112,8 @@ GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
 
       absoluteValueOfVelocityCorrection /= (averageDensity * parameter.nZeroOfGradient);
 
-	  if (parameter.flagOfKondoAndKoshizukaModel == ON && distanceIJ < parameter.radiusOfKondoCollision)
-		  absoluteValueOfVelocityCorrection -= 0.01 * (parameter.radiusOfKondoCollision - distanceIJ);
+	  if (parameter.flagOfKondoAndKoshizukaModel == ON && distanceIJ < parameter.radiusOfKondoCollision * particle.averageDistance)
+		  absoluteValueOfVelocityCorrection -= 0.01 * (parameter.radiusOfKondoCollision * particle.averageDistance - distanceIJ);
 
 
 
