@@ -66,7 +66,8 @@ main( int argumentCount, char **argumentVector ){
 
 		if (parameter.flagOfKondoAndKoshizukaModel == ON) {
 			DENSITY_calculateParticleNumberDensity(particle.position);
-			COPY_copy1dimDoubleArray(particle.totalNumber, particle.particleNumberDensity_prevstep, particle.particleNumberDensity);
+			COPY_copy1dimDoubleArray(particle.totalNumber, particle.particleNumberDensity_prevstep, particle.particleNumberDensity_previous);
+			COPY_copy1dimDoubleArray(particle.totalNumber, particle.particleNumberDensity_previous, particle.particleNumberDensity);
 
 		}
 
@@ -93,7 +94,7 @@ main( int argumentCount, char **argumentVector ){
         
 		INFLOW_changeInflowParticles();
 
-        COLLISION_calculateCollisionBetweenParticles();
+        //COLLISION_calculateCollisionBetweenParticles();
         
         OTHER_checkThatParticlesAreNotAllGhost();
         
@@ -117,7 +118,7 @@ main( int argumentCount, char **argumentVector ){
         
         FILE_writeCalculationResultInFile();
         
-        COLLISION_calculateCollisionBetweenParticles();
+        //COLLISION_calculateCollisionBetweenParticles();
         
         NEIGH_setNeighborTable(particle.position);
         

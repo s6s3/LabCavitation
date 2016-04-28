@@ -15,8 +15,8 @@ WEIGHT_calculateWeightFunction( double distance, double radius ){
   double weightIJ;
 
   if ( distance < radius){
-
-      weightIJ = radius/distance - 1.0;
+	  if (parameter.flagOfKondoAndKoshizukaModel == ON)weightIJ = (1.0 - fabs(distance) / radius) * (1.0 - fabs(distance) / radius);
+      else weightIJ = radius/distance - 1.0;
 
   }else{
 

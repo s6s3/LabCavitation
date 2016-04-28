@@ -24,10 +24,10 @@ autoSettingOfDomainSize(on/off)                    on
 --off--lowerLimit[YDIM](m)                        -7.0
 --off--lowerLimit[ZDIM](m)                        -3.0
 #--------RadiusOfInteractionDomain--------------------------------
-radiusOfParticleNumberDensity(ratio)               2.1
-radiusOfGradient(ratio)                            2.1
-radiusOfLaplacianForViscosity(ratio)               3.1
-radiusOfLaplacianForPressure(ratio)                3.1
+radiusOfParticleNumberDensity(ratio)               3.2
+radiusOfGradient(ratio)                            3.2
+radiusOfLaplacianForViscosity(ratio)               4.0
+radiusOfLaplacianForPressure(ratio)                4.0
 ########                                           ***
 #######--LESS-FREQUENTLY-USED-DATA-###############################
 #--------Bucket(subDomain)----------------------------------------
