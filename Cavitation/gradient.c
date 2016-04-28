@@ -103,7 +103,7 @@ GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
       //absoluteValueOfVelocityCorrection *= (particle.pressure[jParticle] - particle.minPressureAmongNeighbors[iParticle])/distanceIJ;
       /*new*/
       
-	  if(parameter.flagOfKondoAndKoshizukaModel == ON) absoluteValueOfVelocityCorrection *= (particle.pressure[jParticle] + particle.pressure[iParticle] + parameter.artificialPressure) / distanceIJ;
+	  if(parameter.flagOfKondoAndKoshizukaModel == ON) absoluteValueOfVelocityCorrection *= (particle.pressure[jParticle] - particle.pressure[iParticle] + parameter.artificialPressure) / distanceIJ;
 	  else absoluteValueOfVelocityCorrection *= (particle.pressure[jParticle] + particle.pressure[iParticle])/distanceIJ;
 
 
