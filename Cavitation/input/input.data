@@ -2,11 +2,11 @@
 #--------ParticleSize----------------------------------------------
 averageDistanceBetweenParticles(m)                 0.012
 #--------Time------------------------------------------------------
-finishTime(sec)                                    1.0
+finishTime(sec)                                    3.0
 inititalDt(sec)                                    1.0e-3
 #--------File------------------------------------------------------
 TypeOfOutputInterval(simulationTime/timeStep)      simulationTime
---simulationTime---interval(sec)                   1.0e-3
+--simulationTime---interval(sec)                   1.0e-2
 --timeStep---------interval(timeStep)              1
 #--------Domain----------------------------------------------------
 numberOfDimensions(2or3)                           2 
@@ -26,8 +26,8 @@ autoSettingOfDomainSize(on/off)                    on
 #--------RadiusOfInteractionDomain--------------------------------
 radiusOfParticleNumberDensity(ratio)               3.2
 radiusOfGradient(ratio)                            3.2
-radiusOfLaplacianForViscosity(ratio)               4.0
-radiusOfLaplacianForPressure(ratio)                4.0
+radiusOfLaplacianForViscosity(ratio)               3.2
+radiusOfLaplacianForPressure(ratio)                3.2
 ########                                           ***
 #######--LESS-FREQUENTLY-USED-DATA-###############################
 #--------Bucket(subDomain)----------------------------------------
@@ -141,9 +141,9 @@ forcedMotionOfRigidBody(on/off)                    off
 #--------TANAKAandMASUNAGAModel-----------------------------------
 flagOfTanakaAndMasunagaModel(on/off)               off                   
 --on--valueOfGamma                                 0.01
---on--valueOfC                                     1.0
+--on--valueOfC                                     1.00
 #--------KONDOandKOSHIZUKAModel-----------------------------------
-flagOfKondoAndKoshizukaModel(on/off)               on 
+flagOfKondoAndKoshizukaModel(on/off)               off 
 --on---valueOfAlpha                                0.96
 --on---valueOfBeta                                 0.96
 --on---valueOfGamma                                0.096
