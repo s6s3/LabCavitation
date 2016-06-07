@@ -94,7 +94,7 @@ main( int argumentCount, char **argumentVector ){
         
 		INFLOW_changeInflowParticles();
 
-        //COLLISION_calculateCollisionBetweenParticles();
+        COLLISION_calculateCollisionBetweenParticles();
         
         OTHER_checkThatParticlesAreNotAllGhost();
         
@@ -118,7 +118,7 @@ main( int argumentCount, char **argumentVector ){
         
         FILE_writeCalculationResultInFile();
         
-        //COLLISION_calculateCollisionBetweenParticles();
+        COLLISION_calculateCollisionBetweenParticles();
         
         NEIGH_setNeighborTable(particle.position);
         
