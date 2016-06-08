@@ -368,7 +368,9 @@ typedef struct{
   double inflowMoleOfBubbles;
   double inflowNumberOfBubbles;
 
-
+  int flagOfGradientTensor;
+  double gradientTensor[3][3];
+  double gradientTensorInverse[3][3];
    
 }structParameter;
 

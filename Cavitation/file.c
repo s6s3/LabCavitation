@@ -1663,19 +1663,20 @@ FILE_readDataFile( void ){
   FILE_skipComment(fp);
   FILE_scanDouble(fp, &parameter.radiusOfKondoCollision
 	  , "parameter.radiusOfKondoCollision");
-  FILE_skipComment(fp);
+
+
+  FILE_skipComment(fp);//gradientTensor
   //FILE_scanChar( fp, parameter.nameOfSamplingDataFileForForcedMotionOfWall
   //                 ,"parameter.nameOfSamplingDataFileForForcedMotionOfWall");
 
 
   FILE_skipComment(fp);
-
-
+  FILE_scanInt(fp, &parameter.flagOfGradientTensor
+	  , "parameter.flagOfGradientTensor");
   FILE_skipComment(fp);
   FILE_skipComment(fp);
 
 
-  FILE_skipComment(fp);
   FILE_skipComment(fp);
   FILE_skipComment(fp);
 

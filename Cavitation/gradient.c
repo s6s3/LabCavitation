@@ -138,3 +138,20 @@ GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
   }
 }
 
+void GRADIENT_zeroGradientTensor(void) {
+	int i, j;
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 3; j++) {
+			parameter.gradientTensor[i][j] = 0.0;
+			parameter.gradientTensorInverse[i][j] = 0.0;
+
+		}
+	}
+
+}
+
+//TBI
+int GRADIENT_getGradientTensorInverse(void) {
+	double det = 0.0;
+	return -1;
+}

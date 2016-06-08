@@ -149,8 +149,8 @@ flagOfKondoAndKoshizukaModel(on/off)               on
 --on---valueOfGamma                                0.01
 --on---artificialPressure                          100.0
 --on---radiusOfCollision(ratio)                    0.7
-########                                           ***
-#-----------------------------------------------------------------
+#--------GradientTensor-------------------------------------------
+flagOfGradientTensor(on/off)                       off
 ########                                           ***
 ########                                           ***
 ########                                           ***
