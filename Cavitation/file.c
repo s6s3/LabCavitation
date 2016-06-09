@@ -1959,8 +1959,8 @@ FILE_displayReadDataFile( void ){
   fprintf(FpForLog, "--on---valueOfKondoGamma                                %lf\n", parameter.valueOfKondoGamma);
   fprintf(FpForLog, "--on---artificialPressure                               %lf\n", parameter.artificialPressure);
   fprintf(FpForLog, "--on---radiusOfCollision(ratio)                         %lf\n", parameter.radiusOfKondoCollision);
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
+  fprintf(FpForLog,"#--------GradientTensor-------------------------------------------\n");
+  fprintf(FpForLog,"flagOfGradientTensor(on/off)                       %s\n", FILE_returnOnOff(parameter.flagOfGradientTensor));
   fprintf(FpForLog,"#############                                      ***\n");
   fprintf(FpForLog,"#############                                      ***\n");
   fprintf(FpForLog,"#############                                      ***\n");
