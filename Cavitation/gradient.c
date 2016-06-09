@@ -122,9 +122,6 @@ GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
 
 			absoluteValueOfVelocityCorrection /= (averageDensity * parameter.nZeroOfGradient);
 
-			if (parameter.flagOfKondoAndKoshizukaModel == ON && distanceIJ < parameter.radiusOfKondoCollision * particle.averageDistance)
-				absoluteValueOfVelocityCorrection -= 0.01 * (parameter.radiusOfKondoCollision * particle.averageDistance - distanceIJ) * timer.dt;
-
 			if (parameter.flagOfGradientTensor == ON) {
 				GRADIENT_getGradientTensorInverse();
 				d_vx = absoluteValueOfVelocityCorrection * (xji * parameter.gradientTensorInverse[0][0] + yji * parameter.gradientTensorInverse[0][1]) / distanceIJ;
@@ -144,6 +141,15 @@ GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
 				}
 			}
 
+			if (parameter.flagOfKondoAndKoshizukaModel == ON && distanceIJ < parameter.radiusOfKondoCollision * particle.averageDistance) {
+				d_vx -= 0.01 * (parameter.radiusOfKondoCollision * particle.averageDistance - distanceIJ) * timer.dt * xji / distanceIJ;
+				d_vy -= 0.01 * (parameter.radiusOfKondoCollision * particle.averageDistance - distanceIJ) * timer.dt * yji / distanceIJ;
+				if (NumberOfDimensions == 3) {
+					d_vz -= 0.01 * (parameter.radiusOfKondoCollision * particle.averageDistance - distanceIJ) * timer.dt * zji / distanceIJ;
+
+				}
+			}
+				
 			particle.velocity_correction[XDIM][iParticle] += d_vx;
 			particle.velocity_correction[YDIM][iParticle] += d_vy;
 
@@ -158,19 +164,6 @@ GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
 	}
 }
 
-void GRADIENT_addGradientTensor(int iParticle, int jParticle) {
-	int i, j;
-	double tmpTensor[3][3];
-	for (i = 0; i < 3; i++) {
-		for (j = 0; j < 3; j++) {
-			tmpTensor[i][j] = 0.0;
-
-		}
-	}
-
-
-
-}
 
 void GRADIENT_zeroGradientTensor(void) {
 	int i, j;
