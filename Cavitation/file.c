@@ -890,6 +890,22 @@ FILE_makeVtkFile( void ){
 		fprintf(fp,"%lf %lf %lf\n",particle.velocity[XDIM][iParticle],particle.velocity[YDIM][iParticle],particle.velocity[ZDIM][iParticle]);
 	}
     fprintf(fp,"\n");
+
+
+	fprintf(fp, "VECTORS velocity_correction float\n");
+	for (iParticle = 0; iParticle<particle.totalNumber; iParticle++) {
+		fprintf(fp, "%lf %lf %lf\n", particle.velocity_correction[XDIM][iParticle], particle.velocity_correction[YDIM][iParticle], particle.velocity_correction[ZDIM][iParticle]);
+	}
+	fprintf(fp, "\n");
+
+	fprintf(fp, "SCALARS SourceTerm float 1\n");
+	fprintf(fp, "LOOKUP_TABLE SourceTerm\n");
+	for (iParticle = 0; iParticle<particle.totalNumber; iParticle++) {
+		fprintf(fp, "%lf\n", particle.sourceTermOfPressure[iParticle]);
+	}
+	fprintf(fp, "\n");
+
+
     
     if(parameter.flagOfOutputOfTorqueFile == ON ){
        fprintf(fp,"VECTORS Torque float\n");
