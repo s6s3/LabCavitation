@@ -78,7 +78,7 @@ flagOfViscosityCalculation(on/off)                 on
 --on--kinematicViscosity(m^2/s)                    1.0e-6
 #--------Bubble---------------------------------------------------
 flagOfBubbleCalculationy(on/off)                   on                 
---on--nameOfInputfile                              case1/input.bubble
+--on--nameOfInputfile                              ./input/input.bubble
 --on--numperOfParticleForCalculatingBeta           574                        
 --on--massDensityOfBubble(kg/m^3)                  8.98
 --on--gassConstant(J/K*mol)                        8.3144621
@@ -106,7 +106,7 @@ flagOfInflowBoundaryCondition(on/off)              on
 --------on--positionVector[YDIM]                   0.044800 
 --------on--positionVector[ZDIM]                   0.0
 --on--inflowVelocity[XDIM](m/s)                    0.0
---on--inflowVelocity[YDIM](m/s)                   -1.40625
+--on--inflowVelocity[YDIM](m/s)                   -1.8125
 --on--inflowVelocity[ZDIM](m/s)                    0.0
 --on--numberOfExtraGhostParticles                  3000
 --on--inflowMoleOfBubbles                          2.2448e-12
@@ -142,12 +142,15 @@ forcedMotionOfRigidBody(on/off)                    off
 flagOfTanakaAndMasunagaModel(on/off)               off                   
 --on--valueOfGamma                                 0.01
 --on--valueOfC                                     1.0
-########                                           ***
-########                                           ***
-#-----------------------------------------------------------------
-########                                           ***
-########                                           ***
-#-----------------------------------------------------------------
+#--------KONDOandKOSHIZUKAModel-----------------------------------
+flagOfKondoAndKoshizukaModel(on/off)               off 
+--on---valueOfAlpha                                1.0
+--on---valueOfBeta                                 1.0
+--on---valueOfGamma                                0.01
+--on---artificialPressure                          100.0
+--on---radiusOfCollision(ratio)                    0.7
+#--------GradientTensor-------------------------------------------
+flagOfGradientTensor(on/off)                       on
 ########                                           ***
 ########                                           ***
 ########                                           ***

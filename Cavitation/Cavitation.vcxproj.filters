@@ -27,9 +27,6 @@
     <ClCompile Include="cavitation.c">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="cg.c">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="collision.c">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -132,9 +129,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="cavitation.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="cg.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="collision.h">

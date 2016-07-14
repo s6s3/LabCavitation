@@ -127,7 +127,6 @@
     <ClCompile Include="bucket.c" />
     <ClCompile Include="buoyancy.c" />
     <ClCompile Include="cavitation.c" />
-    <ClCompile Include="cg.c" />
     <ClCompile Include="collision.c" />
     <ClCompile Include="convection.c" />
     <ClCompile Include="copy.c" />
@@ -164,7 +163,6 @@
     <ClInclude Include="bucket.h" />
     <ClInclude Include="buoyancy.h" />
     <ClInclude Include="cavitation.h" />
-    <ClInclude Include="cg.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="convection.h" />
     <ClInclude Include="copy.h" />
