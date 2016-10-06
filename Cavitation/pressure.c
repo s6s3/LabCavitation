@@ -19,6 +19,7 @@
 #include "memory.h"
 #include "other.h"
 #include "pressure.h"
+#include "bucket.h"
 
 #include "outflow.h"
 
@@ -536,4 +537,38 @@ PRESSURE_correctPressure( void ){
             particle.pressure[iParticle] += (1.0/2.0)*kinematicViscosity*timer.dt*( particle.particleNumberDensity[iParticle] - n0 )/( dt_squared * n0 );
             
     }
+}
+
+void
+PRESSURE_updateAveragePressure(void) {
+	int iParticle;
+	int iX, iY, iZ;
+	int flag;
+
+	if (parameter.flagOfAveragePressureInEachBucket == OFF || parameter.timeToUpdateAveragePressure > timer.simulationTime)return;
+
+	for (iParticle = 0; iParticle < particle.totalNumber; iParticle++) {
+		if (particle.flagOfBoundaryCondition[iParticle] == GHOST_OR_DUMMY)continue;
+		if (particle.type[iParticle] == GHOST)continue;
+
+		flag = DOMAIN_checkWhetherParticleIsInDomain(iParticle, &particle.position[iParticle]);
+		if (flag == OUT_OF_DOMAIN) continue;
+
+		BUCKET_findBucketWhereParticleIsStored(&iX, &iY, &iZ, iParticle, &particle.position[iParticle]);
+		if (particle.flagOfBoundaryCondition[iParticle] == SURFACE_PARTICLE) {
+			domain.pressureBucket[iX][iY][iZ].count++;
+
+		}
+		else if (particle.flagOfBoundaryCondition[iParticle] == INNER_PARTICLE) {
+			domain.pressureBucket[iX][iY][iZ].pressure =
+				(domain.pressureBucket[iX][iY][iZ].pressure * domain.pressureBucket[iX][iY][iZ].count + particle.pressure[iParticle]) / (domain.pressureBucket[iX][iY][iZ].count + 1);
+			domain.pressureBucket[iX][iY][iZ].count++;
+
+		}
+
+		
+
+	}
+
+
 }

@@ -5,6 +5,8 @@ BUCKET_initializeBucket( void );
 void
 BUCKET_storeParticlesInBuckets( double **position );
 
+void
+BUCKET_initAveragePressureBuckets(void);
 
 void
 BUCKET_countTheNumberOfParticleInEachBucket( double **position );
@@ -16,10 +18,6 @@ BUCKET_allocateMemoryForParticleListOfBucket( double **position );
 
 void
 BUCKET_freeMemoryOfParticleList( void );
-
-
-void
-BUCKET_storeParticlesInBucketsNORMAL( double **position );
 
 
 void

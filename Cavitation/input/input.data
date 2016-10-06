@@ -153,7 +153,7 @@ flagOfKondoAndKoshizukaModel(on/off)               off
 flagOfGradientTensor(on/off)                       on
 #--------AveragePressure------------------------------------------
 flagOfAveragePressureInEachBucket(on/off)          on
---on---timeToStartUpdateAveragePressure            3.5e-3
+--on---timeToStartUpdateAveragePressure            1.0e-5
 ########                                           ***
 ########                                           ***
 ########                                           ***

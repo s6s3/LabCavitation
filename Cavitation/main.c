@@ -110,7 +110,8 @@ main( int argumentCount, char **argumentVector ){
         }
         
         COPY_updateParticleProperty();
-        
+		PRESSURE_updateAveragePressure();
+		
         if(parameter.flagOfBubbleCalculation == ON){
             
             //Bubble_calculateBubble();
@@ -121,8 +122,7 @@ main( int argumentCount, char **argumentVector ){
         
         COLLISION_calculateCollisionBetweenParticles();
         
-        NEIGH_setNeighborTable(particle.position);
-        
+
         
         if( YES == TIMER_checkWhetherItIsTimeToFinishProgram() ) break;
         

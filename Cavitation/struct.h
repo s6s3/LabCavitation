@@ -387,6 +387,11 @@ typedef struct{
 
 } structBucket;
 
+typedef struct {
+	double pressure;
+	int count;
+
+} structPressureBucket;
 
 
 typedef struct{
@@ -414,6 +419,8 @@ typedef struct{
   int    flagOfAutoSettingOfDomainSize;
   int    flagOfAutoSettingOfBucketCapacity;
   int    flagOfOptimizationOfBucketMemorySize;
+
+  structPressureBucket ***pressureBucket;
 
 
 } structDomain;

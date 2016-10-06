@@ -32,6 +32,8 @@ BUCKET_initializeBucket( void ){
 
   BUCKET_resetParticleCounterToZero();
 
+  BUCKET_initAveragePressureBuckets();
+
 }
 
 
@@ -82,6 +84,49 @@ BUCKET_storeParticlesInBuckets( double **position ){
 
 }
 
+void
+BUCKET_initAveragePressureBuckets(void) {
+	int iX, iY, iZ;
+
+	char errorMessage[256];
+
+	domain.pressureBucket = (structPressureBucket***)malloc(sizeof(structPressureBucket**) * domain.numberOfBuckets[XDIM]);
+
+	if (domain.pressureBucket == NULL) {
+		sprintf(errorMessage, "domain.pressureBucket is NULL.  [in BUCKET_initAveragePressureBuckets()]\n");
+		OTHER_endProgram(errorMessage);
+	}
+
+	for (iX = 0; iX < domain.numberOfBuckets[XDIM]; iX++) {
+		domain.pressureBucket[iX] = (structPressureBucket**)malloc(sizeof(structPressureBucket*) * domain.numberOfBuckets[YDIM]);
+
+		if (domain.pressureBucket[iX] == NULL) {
+			sprintf(errorMessage, "domain.pressureBucket[%s] is NULL.  [in BUCKET_initAveragePressureBuckets()]\n"
+				, FILE_returnDim(iX));
+
+			OTHER_endProgram(errorMessage);
+		}
+
+		for (iY = 0; iY < domain.numberOfBuckets[YDIM]; iY++) {
+			domain.pressureBucket[iX][iY] = (structPressureBucket *)malloc(sizeof(structPressureBucket) * domain.numberOfBuckets[ZDIM]);
+			if (domain.pressureBucket[iX][iY] == NULL) {
+				sprintf(errorMessage, "domain.pressureBucket[%s][%s] is NULL.  [in BUCKET_initAveragePressureBuckets()]\n", FILE_returnDim(iX), FILE_returnDim(iY));
+
+				OTHER_endProgram(errorMessage);
+			}
+
+			for (iZ = 0; iZ < domain.numberOfBuckets[ZDIM]; iZ++) {
+				domain.pressureBucket[iX][iY][iZ].pressure = 0.0f;
+				domain.pressureBucket[iX][iY][iZ].count = 0;
+			}
+
+		}
+
+	}
+
+	printf("%d %d %d\n", domain.numberOfBuckets[XDIM], domain.numberOfBuckets[YDIM], domain.numberOfBuckets[ZDIM]);
+
+}
 
 void
 BUCKET_countTheNumberOfParticleInEachBucket( double **position ){
@@ -163,50 +208,6 @@ BUCKET_freeMemoryOfParticleList( void ){
 	}
   }
 }
-
-
-
-
-
-void
-BUCKET_storeParticlesInBucketsNORMAL( double **position ){
-  
-  int iParticle;
-  int iX, iY, iZ;
-  int flag;
-  int numberOfStoredParticles;
-
-  BUCKET_resetParticleCounterToZero();
-
-
-  for(iParticle = 0; iParticle < particle.totalNumber; iParticle++){
-
-    if( particle.type[iParticle] == GHOST ) continue;
-
-    flag = DOMAIN_checkWhetherParticleIsInDomain( iParticle, position );
-
-    if( flag == OUT_OF_DOMAIN ){
-		OTHER_displayThatParticleBecameGhost(iParticle);
-      OTHER_changeParticleTypeIntoGhost(iParticle);
-      continue;
-    }
-
-    BUCKET_findBucketWhereParticleIsStored( &iX, &iY, &iZ ,iParticle ,position );
-
-    numberOfStoredParticles = domain.bucket[iX][iY][iZ].count;
-
-    BUCKET_checkCapacityOfTheBucket( numberOfStoredParticles, iX, iY, iZ );
-
-    BUCKET_storeTheParticleInBucket ( iParticle, numberOfStoredParticles, iX, iY, iZ );
-
-  }
-
-
-  BUCKET_recordMaxNumberOfParticlesInBucket();
-
-}
-
-
 
 
 void
@@ -348,57 +349,6 @@ BUCKET_allocateMemoryForBuckets( void ){
 
 }
 
-
-/*
-void
-BUCKET_allocateMemoryForBuckets( void ){
-
-  int iX,iY,iZ;
-  char errorMessage[256];
-
-  domain.bucket = (structBucket***)malloc( sizeof(structBucket**) * domain.numberOfBuckets[XDIM] );
-
-  if (domain.bucket==NULL) {
-	sprintf(errorMessage,"domain.bucket is NULL.  [in BUCKET_allocateMemoryForBuckets()]\n");
-	OTHER_endProgram(errorMessage);
-  }
-
-  for (iX=0 ; iX < domain.numberOfBuckets[XDIM] ; iX++) {
-	domain.bucket[iX] = (structBucket**)malloc( sizeof(structBucket*) * domain.numberOfBuckets[YDIM]);
-
-    if (domain.bucket[iX]==NULL){
-	  sprintf(errorMessage,"domain.bucket[%s] is NULL.  [in BUCKET_allocateMemoryForBuckets()]\n"
-			  ,FILE_returnDim(iX));
-
-	  OTHER_endProgram(errorMessage);
-    }
-
-    for (iY=0 ; iY < domain.numberOfBuckets[YDIM] ; iY++) {
-      domain.bucket[iX][iY] = (structBucket *)malloc( sizeof(structBucket) * domain.numberOfBuckets[ZDIM] );
-      if (domain.bucket[iX][iY]==NULL){
-		sprintf(errorMessage,"domain.bucket[%s][%s] is NULL.  [in BUCKET_allocateMemoryForBuckets()]\n", FILE_returnDim(iX),FILE_returnDim(iY));
-
-		OTHER_endProgram(errorMessage);
-      }
-
-	  for (iZ=0 ; iZ < domain.numberOfBuckets[ZDIM] ; iZ++) {
-		domain.bucket[iX][iY][iZ].list = (int *)malloc( sizeof(int) * domain.capacityOfBucket);
-
-		if (domain.bucket[iX][iY][iZ].list == NULL){
-		  sprintf(errorMessage,"domain.bucket[%s][%s][%s] is NULL.  [in BUCKET_allocateMemoryForBuckets()]\n"
-                              ,FILE_returnDim(iX), FILE_returnDim(iY), FILE_returnDim(iZ));
-		  OTHER_endProgram(errorMessage);
-		}
-	  }
-
-	}
-  }
-
-}
-*/
-
-
-
 void
 BUCKET_checkCapacityOfTheBucket( int currentNumberOfStoredParticles, int iX, int iY, int iZ ){
 
@@ -470,6 +420,8 @@ BUCKET_findBucketWhereParticleIsStored(
    place[iDim] = (int)floor(((fabs)( position[iDim][iParticle] - domain.lowerLimit[iDim]))/( domain.bucketWidth[iDim]));
 	*/
   }
+
+
 
   if( NumberOfDimensions == 2){
     place[ZDIM] = 0;
