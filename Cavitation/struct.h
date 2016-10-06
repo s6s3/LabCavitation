@@ -420,7 +420,11 @@ typedef struct{
   int    flagOfAutoSettingOfBucketCapacity;
   int    flagOfOptimizationOfBucketMemorySize;
 
+  //for calculate average pressure
   structPressureBucket ***pressureBucket;
+  double pressureLowerLimit[3];
+  double pressureBucketWidth[3];
+
 
 
 } structDomain;

@@ -63,6 +63,12 @@ BUCKET_findBucketWhereParticleIsStored(
 									   ,double        **position
 									   );
 
+void
+BUCKET_findPressureBucketWhereParticleIsStored(
+	int *iX, int *iY, int *iZ
+	, int            iParticle
+	, double        **position
+	);
 
 void
 BUCKET_checkErrorOfStorePlace(int iX, int iY, int iZ, int iParticle, double **position);

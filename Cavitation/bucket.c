@@ -87,6 +87,7 @@ BUCKET_storeParticlesInBuckets( double **position ){
 void
 BUCKET_initAveragePressureBuckets(void) {
 	int iX, iY, iZ;
+	int iDim;
 
 	char errorMessage[256];
 
@@ -124,7 +125,15 @@ BUCKET_initAveragePressureBuckets(void) {
 
 	}
 
+	for (iDim = 0; iDim < 3; iDim++) {
+		domain.pressureLowerLimit[iDim] = domain.numberOfBuckets[iDim];
+		domain.pressureBucketWidth[iDim] = domain.bucketWidth[iDim];
+	}
+
+
 	printf("%d %d %d\n", domain.numberOfBuckets[XDIM], domain.numberOfBuckets[YDIM], domain.numberOfBuckets[ZDIM]);
+	printf("%lf %lf %lf\n", domain.bucketWidth[XDIM], domain.bucketWidth[YDIM], domain.bucketWidth[ZDIM]);
+	printf("%lf %lf %lf\n", domain.lowerLimit[XDIM], domain.lowerLimit[YDIM], domain.lowerLimit[ZDIM]);
 
 }
 
@@ -283,6 +292,8 @@ BUCKET_displayInformationOfBucket( void ){
   }
 
 
+
+
   for(iDim = 0; iDim < NumberOfDimensions; iDim++){
     fprintf(FpForLog,"domain.numberOfBuckets[%s] = %d\n", FILE_returnDim(iDim),domain.numberOfBuckets[iDim]);
   }
@@ -432,6 +443,40 @@ BUCKET_findBucketWhereParticleIsStored(
   (*iZ) = place[ZDIM];
 
   BUCKET_checkErrorOfStorePlace( (*iX), (*iY), (*iZ), iParticle, position );
+
+}
+
+
+void
+BUCKET_findPressureBucketWhereParticleIsStored(
+	int *iX, int *iY, int *iZ
+	, int            iParticle
+	, double        **position
+	) {
+
+	int place[3];
+	int iDim;
+
+	for (iDim = 0; iDim < NumberOfDimensions; iDim++) {
+
+		place[iDim] = (int)floor((position[iDim][iParticle] - domain.pressureLowerLimit[iDim]) / domain.pressureBucketWidth[iDim]);
+
+		/*
+		place[iDim] = (int)floor(((fabs)( position[iDim][iParticle] - domain.lowerLimit[iDim]))/( domain.bucketWidth[iDim]));
+		*/
+	}
+
+
+
+	if (NumberOfDimensions == 2) {
+		place[ZDIM] = 0;
+	}
+
+	(*iX) = place[XDIM];
+	(*iY) = place[YDIM];
+	(*iZ) = place[ZDIM];
+
+	BUCKET_checkErrorOfStorePlace((*iX), (*iY), (*iZ), iParticle, position);
 
 }
 
