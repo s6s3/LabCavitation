@@ -173,7 +173,7 @@ OUTFLOW_deleteOutflowParticles() {
 
 void
 OUTFLOW_correctOutflowVelocity() {
-	int iParticle, jParticle;
+	int iParticle;
 	int iDim;
 
 	double velocityUpstream;
@@ -338,7 +338,7 @@ void OUTFLOW_correctYamakawaOutflowVelocity() {
 //˜¥Š¨’è‚â‚ß‚Ä‚İ‚é
 //ƒmƒYƒ‹“à‚ÅŒµ–§‚ÉŒvZ
 void OUTFLOW_correctYamakawaOutflowVelocity2() {
-	int iParticle, jParticle;
+	int iParticle;
 	int iDim;
 
 	double du, gamma;
@@ -449,7 +449,7 @@ void OUTFLOW_correctYamakawaOutflowVelocity2() {
 
 //Ä“cæ¶‚Ì‚ğ‰ü—Ç
 void OUTFLOW_correctShibataOutflowVelocity() {
-	int iParticle, jParticle;
+	int iParticle;
 	int iDim;
 
 	double du;

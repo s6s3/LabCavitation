@@ -38,7 +38,6 @@ void
 GRADIENT_calculatePressureGradientAndVelocityCorrection( void ){
 
 	int iParticle, jParticle, iNeigh;
-	int iRow, iColumn;
 
 	double xji;
 	double yji;

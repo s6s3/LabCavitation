@@ -53,7 +53,8 @@
 
 int
 main( int argumentCount, char **argumentVector ){
-	_controlfp(0, _EM_ZERODIVIDE | _EM_UNDERFLOW | _EM_OVERFLOW | _EM_INVALID);//0œZŒŸo
+	_controlfp(_MCW_EM, _MCW_EM);
+	//_controlfp(0, _EM_ZERODIVIDE | _EM_UNDERFLOW | _EM_OVERFLOW | _EM_INVALID);//0œZŒŸo
 
 	INIT_initializeParameters( argumentCount, argumentVector );
     

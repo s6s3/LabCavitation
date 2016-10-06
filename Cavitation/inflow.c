@@ -13,7 +13,7 @@ double INFLOW_getSignedDistanceFromInflowBounds(int iParticle) {
 	int iDim;
 	double norm;
 	double normal_squared, func;
-	normal_squared = 0.0;
+	normal_squared = 0.0; func = 0.0;
 	for (iDim = 0; iDim < NumberOfDimensions; iDim++) {
 		normal_squared += parameter.inflowVelocity[iDim] * parameter.inflowVelocity[iDim];
 	}

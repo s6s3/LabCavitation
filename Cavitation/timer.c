@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINIGS
+
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
