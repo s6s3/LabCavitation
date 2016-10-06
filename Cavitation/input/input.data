@@ -139,7 +139,7 @@ forcedMotionOfRigidBody(on/off)                    off
 --on---typeNumberOfRigidParticle                   1
 --on---fileNameOfSamplingDataForRigidBody          input.forcedMotion
 #--------TANAKAandMASUNAGAModel-----------------------------------
-flagOfTanakaAndMasunagaModel(on/off)               off                   
+flagOfTanakaAndMasunagaModel(on/off)               off
 --on--valueOfGamma                                 0.01
 --on--valueOfC                                     1.0
 #--------KONDOandKOSHIZUKAModel-----------------------------------
@@ -151,10 +151,10 @@ flagOfKondoAndKoshizukaModel(on/off)               off
 --on---radiusOfCollision(ratio)                    0.7
 #--------GradientTensor-------------------------------------------
 flagOfGradientTensor(on/off)                       on
+#--------AveragePressure------------------------------------------
+flagOfAveragePressureInEachBucket(on/off)          on
+--on---timeToStartUpdateAveragePressure            3.5e-3
 ########                                           ***
-########                                           ***
-########                                           ***
-#-------------------------------------------------------------
 ########                                           ***
 ########                                           ***
 ########                                           ***

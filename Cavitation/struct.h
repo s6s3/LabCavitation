@@ -372,6 +372,9 @@ typedef struct{
   double gradientTensor[3][3];
   double gradientTensorInverse[3][3];
    
+  int flagOfAveragePressureInEachBucket;
+  double timeToUpdateAveragePressure;
+
 }structParameter;
 
 

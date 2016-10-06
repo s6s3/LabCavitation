@@ -463,7 +463,9 @@ FILE_scanOnOff(FILE *fp, int *flag, char *variable_name){
 
   }else{
     sprintf(errorMessage,"Error: Parameter of \"%s\" is not adequate. [ in data-file]\n", variable_name);
-    OTHER_endProgram(errorMessage);
+	sprintf(errorMessage, "%s\n", buf);
+	
+	OTHER_endProgram(errorMessage);
   }
 
 }
@@ -1691,13 +1693,14 @@ FILE_readDataFile( void ){
 	  , "parameter.flagOfGradientTensor");
   FILE_skipComment(fp);
   FILE_skipComment(fp);
-
-
-  FILE_skipComment(fp);
   FILE_skipComment(fp);
 
-
+  FILE_scanOnOff(fp, &parameter.flagOfAveragePressureInEachBucket
+	  , "parameter.flagOfAveragePressureInEachBucket");
   FILE_skipComment(fp);
+
+  FILE_scanDouble(fp, &parameter.timeToUpdateAveragePressure
+	  , "parameter.timeToUpdateAveragePressure");
   FILE_skipComment(fp);
 
 
@@ -1977,9 +1980,9 @@ FILE_displayReadDataFile( void ){
   fprintf(FpForLog, "--on---radiusOfCollision(ratio)                         %lf\n", parameter.radiusOfKondoCollision);
   fprintf(FpForLog,"#--------GradientTensor-------------------------------------------\n");
   fprintf(FpForLog,"flagOfGradientTensor(on/off)                       %s\n", FILE_returnOnOff(parameter.flagOfGradientTensor));
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
+  fprintf(FpForLog,"#--------AveragePressure------------------------------------------\n");
+  fprintf(FpForLog,"flagOfAveragePressureInEachBucket(on/off)          %s\n", FILE_returnOnOff(parameter.flagOfAveragePressureInEachBucket));
+  fprintf(FpForLog,"--on---timeToStartUpdateAveragePressure            %lf\n", parameter.timeToUpdateAveragePressure);
   fprintf(FpForLog,"#############                                      ***\n");
   fprintf(FpForLog,"#############                                      ***\n");
   fprintf(FpForLog,"#############                                      ***\n");
