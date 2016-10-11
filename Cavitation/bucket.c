@@ -86,55 +86,38 @@ BUCKET_storeParticlesInBuckets( double **position ){
 
 void
 BUCKET_initAveragePressureBuckets(void) {
-	int iX, iY, iZ;
 	int iDim;
-
 	char errorMessage[256];
 
-	domain.pressureBucket = (structPressureBucket***)malloc(sizeof(structPressureBucket**) * domain.numberOfBuckets[XDIM]);
+	for (iDim = 0; iDim < NumberOfDimensions; iDim++) {
+		domain.pressureBucketNumber[iDim] = (domain.pressureUpperLimit[iDim] - domain.pressureLowerLimit[iDim]) / domain.pressureBucketWidth;
 
+	}
+	if (NumberOfDimensions == 2) domain.pressureBucketNumber[ZDIM] = 1;
+
+	domain.pressureBucket = (double *)malloc(sizeof(double) * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM] * domain.pressureBucketNumber[ZDIM]);
 	if (domain.pressureBucket == NULL) {
-		sprintf(errorMessage, "domain.pressureBucket is NULL.  [in BUCKET_initAveragePressureBuckets()]\n");
+		sprintf(errorMessage, "domain.pressureBucket is NULL.  [in BUCKET_allocateMemoryForBuckets()]\n");
 		OTHER_endProgram(errorMessage);
 	}
 
-	for (iX = 0; iX < domain.numberOfBuckets[XDIM]; iX++) {
-		domain.pressureBucket[iX] = (structPressureBucket**)malloc(sizeof(structPressureBucket*) * domain.numberOfBuckets[YDIM]);
+	domain.countBucket = (int *)malloc(sizeof(int) * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM] * domain.pressureBucketNumber[ZDIM]);
+	if (domain.countBucket == NULL) {
+		sprintf(errorMessage, "domain.pressureBucket is NULL.  [in BUCKET_allocateMemoryForBuckets()]\n");
+		OTHER_endProgram(errorMessage);
+	}
+	BUCKET_resetAveragePressureBucket();
 
-		if (domain.pressureBucket[iX] == NULL) {
-			sprintf(errorMessage, "domain.pressureBucket[%s] is NULL.  [in BUCKET_initAveragePressureBuckets()]\n"
-				, FILE_returnDim(iX));
+}
 
-			OTHER_endProgram(errorMessage);
-		}
-
-		for (iY = 0; iY < domain.numberOfBuckets[YDIM]; iY++) {
-			domain.pressureBucket[iX][iY] = (structPressureBucket *)malloc(sizeof(structPressureBucket) * domain.numberOfBuckets[ZDIM]);
-			if (domain.pressureBucket[iX][iY] == NULL) {
-				sprintf(errorMessage, "domain.pressureBucket[%s][%s] is NULL.  [in BUCKET_initAveragePressureBuckets()]\n", FILE_returnDim(iX), FILE_returnDim(iY));
-
-				OTHER_endProgram(errorMessage);
-			}
-
-			for (iZ = 0; iZ < domain.numberOfBuckets[ZDIM]; iZ++) {
-				domain.pressureBucket[iX][iY][iZ].pressure = 0.0f;
-				domain.pressureBucket[iX][iY][iZ].count = 0;
-			}
-
-		}
+void
+BUCKET_resetAveragePressureBucket(void) {
+	int iBucket;
+	for (iBucket = 0; iBucket < domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM] * domain.pressureBucketNumber[ZDIM]; iBucket++) {
+		domain.pressureBucket[iBucket] = 0.0f;
+		domain.countBucket[iBucket] = 0;
 
 	}
-
-	for (iDim = 0; iDim < 3; iDim++) {
-		domain.pressureLowerLimit[iDim] = domain.numberOfBuckets[iDim];
-		domain.pressureBucketWidth[iDim] = domain.bucketWidth[iDim];
-	}
-
-
-	printf("%d %d %d\n", domain.numberOfBuckets[XDIM], domain.numberOfBuckets[YDIM], domain.numberOfBuckets[ZDIM]);
-	printf("%lf %lf %lf\n", domain.bucketWidth[XDIM], domain.bucketWidth[YDIM], domain.bucketWidth[ZDIM]);
-	printf("%lf %lf %lf\n", domain.lowerLimit[XDIM], domain.lowerLimit[YDIM], domain.lowerLimit[ZDIM]);
-
 }
 
 void
@@ -458,8 +441,14 @@ BUCKET_findPressureBucketWhereParticleIsStored(
 	int iDim;
 
 	for (iDim = 0; iDim < NumberOfDimensions; iDim++) {
+		if (position[iDim][iParticle] < domain.pressureLowerLimit[iDim] || position[iDim][iParticle] >= domain.pressureUpperLimit[iDim]) {
+			*iX = -1; *iY = -1; *iZ = -1;
+			return;
+		}
+	}
 
-		place[iDim] = (int)floor((position[iDim][iParticle] - domain.pressureLowerLimit[iDim]) / domain.pressureBucketWidth[iDim]);
+	for (iDim = 0; iDim < NumberOfDimensions; iDim++) {
+		place[iDim] = (int)floor((position[iDim][iParticle] - domain.pressureLowerLimit[iDim]) / domain.pressureBucketWidth);
 
 		/*
 		place[iDim] = (int)floor(((fabs)( position[iDim][iParticle] - domain.lowerLimit[iDim]))/( domain.bucketWidth[iDim]));

@@ -555,14 +555,25 @@ PRESSURE_updateAveragePressure(void) {
 		//if (flag == OUT_OF_DOMAIN) continue;
 
 		BUCKET_findPressureBucketWhereParticleIsStored(&iX, &iY, &iZ, iParticle, &particle.position[iParticle]);
+		if (iX == -1)continue;
 		if (particle.flagOfBoundaryCondition[iParticle] == SURFACE_PARTICLE) {
-			domain.pressureBucket[iX][iY][iZ].count++;
-
+			//domain.pressureBucket[iX][iY][iZ].count++;
+			if(NumberOfDimensions)domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM]]++ ;
+			else domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]]++;
 		}
 		else if (particle.flagOfBoundaryCondition[iParticle] == INNER_PARTICLE) {
-			domain.pressureBucket[iX][iY][iZ].pressure =
-				(domain.pressureBucket[iX][iY][iZ].pressure * domain.pressureBucket[iX][iY][iZ].count + particle.pressure[iParticle]) / (domain.pressureBucket[iX][iY][iZ].count + 1);
-			domain.pressureBucket[iX][iY][iZ].count++;
+			//domain.pressureBucket[iX][iY][iZ].pressure =
+				//(domain.pressureBucket[iX][iY][iZ].pressure * domain.pressureBucket[iX][iY][iZ].count + particle.pressure[iParticle]) / (domain.pressureBucket[iX][iY][iZ].count + 1);
+			//domain.pressureBucket[iX][iY][iZ].count++;
+			if (NumberOfDimensions)domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM]] 
+				= (domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM]] * domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM]] + particle.pressure[iParticle])
+				/ (domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM]] + 1);
+			else domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]]
+				= (domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]] 
+					* domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]] + particle.pressure[iParticle])
+				/ (domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]] + 1);
+			if (NumberOfDimensions)domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM]]++;
+			else domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]];
 
 		}
 

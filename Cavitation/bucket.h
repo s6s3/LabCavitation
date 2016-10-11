@@ -9,6 +9,9 @@ void
 BUCKET_initAveragePressureBuckets(void);
 
 void
+BUCKET_resetAveragePressureBucket(void);
+
+void
 BUCKET_countTheNumberOfParticleInEachBucket( double **position );
 
 

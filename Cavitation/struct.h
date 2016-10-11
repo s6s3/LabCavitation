@@ -421,9 +421,15 @@ typedef struct{
   int    flagOfOptimizationOfBucketMemorySize;
 
   //for calculate average pressure
-  structPressureBucket ***pressureBucket;
+  //structPressureBucket ***pressureBucket;
+
+  int pressureBucketNumber[3];
   double pressureLowerLimit[3];
-  double pressureBucketWidth[3];
+  double pressureUpperLimit[3];
+  double pressureBucketWidth;
+
+  double *pressureBucket;
+  int *countBucket;
 
 
 

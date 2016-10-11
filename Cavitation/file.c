@@ -1705,30 +1705,35 @@ FILE_readDataFile( void ){
 	  , "parameter.timeToUpdateAveragePressure");
   FILE_skipComment(fp);
 
-
-  FILE_skipComment(fp);
-  FILE_skipComment(fp);
-
-
-  FILE_skipComment(fp);
+  FILE_scanDouble(fp, &domain.pressureBucketWidth
+	  , "domain.pressureBucketWidth");
   FILE_skipComment(fp);
 
-
-  FILE_skipComment(fp);
-  FILE_skipComment(fp);
-
-
-  FILE_skipComment(fp);
+  FILE_scanDouble(fp, &domain.pressureUpperLimit[XDIM]
+	  , "&domain.pressureLowerLimit[XDIM]");
   FILE_skipComment(fp);
 
-  FILE_skipComment(fp);
-  FILE_skipComment(fp);
-
-  FILE_skipComment(fp);
+  FILE_scanDouble(fp, &domain.pressureUpperLimit[YDIM]
+	  , "&domain.pressureUpperLimit[YDIM]");
   FILE_skipComment(fp);
 
+  FILE_scanDouble(fp, &domain.pressureUpperLimit[ZDIM]
+	  , "&domain.pressureUpperLimit[ZDIM]");
   FILE_skipComment(fp);
+
+  FILE_scanDouble(fp, &domain.pressureLowerLimit[XDIM]
+	  , "&domain.pressureLowerLimit[XDIM]");
   FILE_skipComment(fp);
+
+  FILE_scanDouble(fp, &domain.pressureLowerLimit[YDIM]
+	  , "&domain.pressureLowerLimit[YDIM]");
+  FILE_skipComment(fp);
+
+  FILE_scanDouble(fp, &domain.pressureLowerLimit[ZDIM]
+	  , "&domain.pressureLowerLimit[ZDIM]");
+  FILE_skipComment(fp);
+
+
   FILE_skipComment(fp);
 
 
@@ -1985,17 +1990,17 @@ FILE_displayReadDataFile( void ){
   fprintf(FpForLog,"#--------AveragePressure------------------------------------------\n");
   fprintf(FpForLog,"flagOfAveragePressureInEachBucket(on/off)          %s\n", FILE_returnOnOff(parameter.flagOfAveragePressureInEachBucket));
   fprintf(FpForLog,"--on---timeToStartUpdateAveragePressure            %lf\n", parameter.timeToUpdateAveragePressure);
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
+  fprintf(FpForLog,"--on---bucketWidth(m)                              %lf\n", domain.pressureBucketWidth);
+  fprintf(FpForLog,"--on---upperLimit[XDIM](m)                         %lf\n", domain.pressureUpperLimit[XDIM]);
+  fprintf(FpForLog,"--on---upperLimit[YDIM](m)                         %lf\n", domain.pressureUpperLimit[YDIM]);
+  fprintf(FpForLog,"--on---upperLimit[ZDIM](m)                         %lf\n", domain.pressureUpperLimit[ZDIM]);
+  fprintf(FpForLog,"--on---lowerLimit[XDIM](m)                         %lf\n", domain.pressureLowerLimit[XDIM]);
+  fprintf(FpForLog, "--on---lowerLimit[YDIM](m)                         %lf\n", domain.pressureLowerLimit[YDIM]);
+  fprintf(FpForLog, "--on---lowerLimit[ZDIM](m)                         %lf\n", domain.pressureLowerLimit[ZDIM]);
 
   fprintf(FpForLog,"#-----------------------------------------------------------------\n");
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
-  fprintf(FpForLog,"#############                                      ***\n");
 
   fprintf(FpForLog,"#-----------------------------------------------------------------\n");
-  fprintf(FpForLog,"#############                                      ***\n");
 
   fprintf(FpForLog,"#-----------------------------------------------------------------\n");
   fprintf(FpForLog,"#############                                      ***\n");
