@@ -554,7 +554,7 @@ PRESSURE_updateAveragePressure(void) {
 		//flag = DOMAIN_checkWhetherParticleIsInDomain(iParticle, &particle.position[iParticle]);
 		//if (flag == OUT_OF_DOMAIN) continue;
 
-		BUCKET_findPressureBucketWhereParticleIsStored(&iX, &iY, &iZ, iParticle, &particle.position[iParticle]);
+		BUCKET_findPressureBucketWhereParticleIsStored(&iX, &iY, &iZ, iParticle, particle.position);
 		if (iX == -1)continue;
 		if (particle.flagOfBoundaryCondition[iParticle] == SURFACE_PARTICLE) {
 			//domain.pressureBucket[iX][iY][iZ].count++;

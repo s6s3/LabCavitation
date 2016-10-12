@@ -108,6 +108,10 @@ BUCKET_initAveragePressureBuckets(void) {
 	}
 	BUCKET_resetAveragePressureBucket();
 
+	printf("pressureBucketNumber: %d %d %d\n", domain.pressureBucketNumber[XDIM], domain.pressureBucketNumber[YDIM], domain.pressureBucketNumber[ZDIM]);
+	printf("pressureLowerLimit: %lf %lf %lf\n", domain.pressureLowerLimit[XDIM], domain.pressureLowerLimit[YDIM], domain.pressureLowerLimit[ZDIM]);
+	printf("pressureUpperLimit: %lf %lf %lf\n", domain.pressureUpperLimit[XDIM], domain.pressureUpperLimit[YDIM], domain.pressureUpperLimit[ZDIM]);
+
 }
 
 void
@@ -116,7 +120,6 @@ BUCKET_resetAveragePressureBucket(void) {
 	for (iBucket = 0; iBucket < domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM] * domain.pressureBucketNumber[ZDIM]; iBucket++) {
 		domain.pressureBucket[iBucket] = 0.0f;
 		domain.countBucket[iBucket] = 0;
-
 	}
 }
 
@@ -464,8 +467,6 @@ BUCKET_findPressureBucketWhereParticleIsStored(
 	(*iX) = place[XDIM];
 	(*iY) = place[YDIM];
 	(*iZ) = place[ZDIM];
-
-	BUCKET_checkErrorOfStorePlace((*iX), (*iY), (*iZ), iParticle, position);
 
 }
 
