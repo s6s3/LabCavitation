@@ -19,6 +19,8 @@ CAVITATION_calculateBubble(void) {
 
 	if (timer.iTimeStep < timer.dt_initial * 10)return;
 
+	if (timer.simulationTime < parameter.timeToUpdateAveragePressure)return;
+
 	CAVITATION_calculateBubbleRising();
 
 	CAVITATION_surfaceJudgement();
@@ -138,7 +140,7 @@ CAVITATION_calculateDifferenceRadius(int iParticle, double averagePressure) {
 
 	}*/
 
-	deltaP = physicalProperty.saturatedVaporPressure - particle.pressure[iParticle];
+	deltaP = physicalProperty.saturatedVaporPressure - particle.bucketPressure[iParticle];
 	deltaR = copysign(1, deltaP) * sqrt(2 * fabs(deltaP) / (3 * physicalProperty.massDensity[0]));
 
 	return(deltaR * timer.dt);

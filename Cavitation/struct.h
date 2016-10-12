@@ -100,6 +100,8 @@ typedef struct{
   int    *isInflow;
   double *cavitationBubblesRadius;
 
+  double *bucketPressure;
+
 }structParticle;
 
 

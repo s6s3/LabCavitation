@@ -187,6 +187,7 @@ MEMORY_freeMemoryOf2dimDoubleArray( double **array, int nLine ){
 
 void
 MEMORY_allocateMemoryForParticleStructure( void ){
+	int iParticle;
 
   particle.type              = MEMORY_allocateMemoryFor1dimIntArray(    particle.totalNumber_upperLimit,     "particle.type"            );
   particle.type_initial      = MEMORY_allocateMemoryFor1dimIntArray(    particle.totalNumber_upperLimit,     "particle.type_initial"    );
@@ -275,6 +276,12 @@ MEMORY_allocateMemoryForParticleStructure( void ){
 
   particle.isInflow = MEMORY_allocateMemoryFor1dimIntArray(particle.totalNumber_upperLimit, "particle.isInflow");
   particle.cavitationBubblesRadius = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.cavitationBubblesRadius");
+
+  particle.bucketPressure = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.bucketPressure");
+
+  for (iParticle = 0; iParticle < particle.totalNumber_upperLimit; iParticle++) {
+	  particle.bucketPressure[iParticle] = 0;
+  }
 
 }
 

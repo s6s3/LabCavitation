@@ -948,6 +948,16 @@ FILE_makeVtkFile( void ){
        printf("Torque[Pressure]=%lf\n",Y_Torque);
        fprintf(fp,"\n");
     }
+
+	if (parameter.flagOfAveragePressureInEachBucket) {
+		fprintf(fp, "SCALARS AveragePressureInEachBucket float 1\n");
+		fprintf(fp, "LOOKUP_TABLE AveragePressureInEachBucket\n");
+		for (iParticle = 0; iParticle<particle.totalNumber; iParticle++) {
+			fprintf(fp, "%lf\n", particle.bucketPressure[iParticle]);
+		}
+		fprintf(fp, "\n");
+
+	}
     
     printf("done.\n");
     

@@ -551,11 +551,13 @@ PRESSURE_updateAveragePressure(void) {
 		if (particle.flagOfBoundaryCondition[iParticle] == GHOST_OR_DUMMY)continue;
 		if (particle.type[iParticle] == GHOST)continue;
 
-		//flag = DOMAIN_checkWhetherParticleIsInDomain(iParticle, &particle.position[iParticle]);
-		//if (flag == OUT_OF_DOMAIN) continue;
-
 		BUCKET_findPressureBucketWhereParticleIsStored(&iX, &iY, &iZ, iParticle, particle.position);
-		if (iX == -1)continue;
+		if (iX == -1) {
+			particle.bucketPressure[iParticle] = 0;
+			continue;
+		}
+		
+		
 		if (particle.flagOfBoundaryCondition[iParticle] == SURFACE_PARTICLE) {
 			//domain.pressureBucket[iX][iY][iZ].count++;
 			if(NumberOfDimensions)domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM]]++ ;
@@ -576,7 +578,9 @@ PRESSURE_updateAveragePressure(void) {
 			else domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]];
 
 		}
-
+		particle.bucketPressure[iParticle] = 
+			(NumberOfDimensions == 2) ? domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM]] 
+			: domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]];
 		
 
 	}
