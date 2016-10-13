@@ -154,11 +154,11 @@ flagOfGradientTensor(on/off)                       on
 #--------AveragePressure------------------------------------------
 flagOfAveragePressureInEachBucket(on/off)          on
 --on---timeToStartUpdateAveragePressure            3.5e-3
---on---bucketWidth(m)                              0.0002
---on---upperLimit[XDIM](m)                         0.0026
+--on---bucketWidth(m)                              0.0006
+--on---upperLimit[XDIM](m)                         0.016
 --on---upperLimit[YDIM](m)                         0.048
 --on---upperLimit[ZDIM](m)                         1.0
---on---lowerLimit[XDIM](m)                        -0.0026
+--on---lowerLimit[XDIM](m)                        -0.016
 --on---lowerLimit[YDIM](m)                         0.0
 --on---lowerLimit[ZDIM](m)                         0.0
 ########                                           ***

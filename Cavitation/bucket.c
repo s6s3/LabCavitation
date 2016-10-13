@@ -90,7 +90,7 @@ BUCKET_initAveragePressureBuckets(void) {
 	char errorMessage[256];
 
 	for (iDim = 0; iDim < NumberOfDimensions; iDim++) {
-		domain.pressureBucketNumber[iDim] = (domain.pressureUpperLimit[iDim] - domain.pressureLowerLimit[iDim]) / domain.pressureBucketWidth;
+		domain.pressureBucketNumber[iDim] = (int)(fabs((domain.pressureUpperLimit[iDim] - domain.pressureLowerLimit[iDim]) / domain.pressureBucketWidth)) + 1;
 
 	}
 	if (NumberOfDimensions == 2) domain.pressureBucketNumber[ZDIM] = 1;
@@ -111,6 +111,20 @@ BUCKET_initAveragePressureBuckets(void) {
 	printf("pressureBucketNumber: %d %d %d\n", domain.pressureBucketNumber[XDIM], domain.pressureBucketNumber[YDIM], domain.pressureBucketNumber[ZDIM]);
 	printf("pressureLowerLimit: %lf %lf %lf\n", domain.pressureLowerLimit[XDIM], domain.pressureLowerLimit[YDIM], domain.pressureLowerLimit[ZDIM]);
 	printf("pressureUpperLimit: %lf %lf %lf\n", domain.pressureUpperLimit[XDIM], domain.pressureUpperLimit[YDIM], domain.pressureUpperLimit[ZDIM]);
+
+
+	fprintf(FpForLog, "\n");
+	fprintf(FpForLog, "\n");
+	fprintf(FpForLog, "====================================================\n");
+	fprintf(FpForLog, "        PressureBuckets                             \n");
+	fprintf(FpForLog, "====================================================\n");
+
+	for (iDim = 0; iDim < NumberOfDimensions; iDim++) {
+		fprintf(FpForLog, "domain.pressureBucketNumber[%s] = %d\n", FILE_returnDim(iDim), domain.pressureBucketNumber[iDim]);
+	}
+	fprintf(FpForLog, "\n");
+	fprintf(FpForLog, "\n");
+	fflush(FpForLog);
 
 }
 
