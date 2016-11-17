@@ -376,6 +376,9 @@ typedef struct{
    
   int flagOfAveragePressureInEachBucket;
   double timeToUpdateAveragePressure;
+  int OutflowBucketIndex[256];
+  int OutflowBucketLength;
+  double OutflowAveragePressure;
 
 }structParameter;
 

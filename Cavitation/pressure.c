@@ -544,9 +544,18 @@ PRESSURE_updateAveragePressure(void) {
 	int iParticle;
 	int iX, iY, iZ;
 	int flag;
+	int outflowsize;
+	int i;
+	int checkbool;
 
 	if (parameter.flagOfAveragePressureInEachBucket == OFF || parameter.timeToUpdateAveragePressure > timer.simulationTime)return;
 
+	for (i = 0; i < 256; i++) {
+		parameter.OutflowBucketIndex[i] = -1;
+	}
+	parameter.OutflowAveragePressure = 0;
+	parameter.OutflowBucketLength = 0;
+	
 	for (iParticle = 0; iParticle < particle.totalNumber; iParticle++) {
 		if (particle.flagOfBoundaryCondition[iParticle] == GHOST_OR_DUMMY)continue;
 		if (particle.type[iParticle] == GHOST)continue;
@@ -562,6 +571,20 @@ PRESSURE_updateAveragePressure(void) {
 			//domain.pressureBucket[iX][iY][iZ].count++;
 			if(NumberOfDimensions)domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM]]++ ;
 			else domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]]++;
+			
+			if (parameter.OutflowBucketLength >= 256)break;
+			checkbool = 0;
+			for (i = 0; i < parameter.OutflowBucketLength; i++) {
+				if (parameter.OutflowBucketIndex[i] == iX + iY * domain.pressureBucketNumber[XDIM]) {
+					checkbool = 1;
+					break;
+				}
+			}
+			if (checkbool == 0) {
+				parameter.OutflowBucketIndex[parameter.OutflowBucketLength] = iX + iY * domain.pressureBucketNumber[XDIM];
+				parameter.OutflowBucketLength++;
+			}
+
 		}
 		else if (particle.flagOfBoundaryCondition[iParticle] == INNER_PARTICLE) {
 			//domain.pressureBucket[iX][iY][iZ].pressure =
