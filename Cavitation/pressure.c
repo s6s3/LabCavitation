@@ -601,12 +601,23 @@ PRESSURE_updateAveragePressure(void) {
 			else domain.countBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]];
 
 		}
-		particle.bucketPressure[iParticle] = 
-			(NumberOfDimensions == 2) ? domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM]] 
-			: domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]];
 		
 
 	}
 
+	for (i = 0; i < parameter.OutflowBucketLength; i++) {
+		parameter.OutflowAveragePressure += domain.pressureBucket[parameter.OutflowBucketIndex[i]];
+	}
+	parameter.OutflowAveragePressure /= parameter.OutflowBucketLength;
+
+	for (iParticle = 0; iParticle < particle.totalNumber; iParticle++) {
+		if (particle.flagOfBoundaryCondition[iParticle] == GHOST_OR_DUMMY)continue;
+		if (particle.type[iParticle] == GHOST)continue;
+
+		particle.bucketPressure[iParticle] =
+			(NumberOfDimensions == 2) ? domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM]] - parameter.OutflowAveragePressure
+			: domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM] + iZ * domain.pressureBucketNumber[XDIM] * domain.pressureBucketNumber[YDIM]] - parameter.OutflowAveragePressure;
+
+	}
 
 }

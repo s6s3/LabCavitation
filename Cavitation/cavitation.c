@@ -140,7 +140,7 @@ CAVITATION_calculateDifferenceRadius(int iParticle, double averagePressure) {
 
 	}*/
 
-	deltaP = physicalProperty.saturatedVaporPressure - particle.bucketPressure[iParticle] - averagePressure;
+	deltaP = physicalProperty.saturatedVaporPressure - particle.bucketPressure[iParticle];// -averagePressure;
 	deltaR = copysign(1, deltaP) * sqrt(2 * fabs(deltaP) / (3 * physicalProperty.massDensity[0]));
 
 	return(deltaR * timer.dt);
@@ -201,11 +201,7 @@ CAVITATION_calculateBubbleRising(void) {
 	averagePressure = CAVITATION_getBodyPressure();
 
 
-	for (i = 0; i < parameter.OutflowBucketLength; i++) {
-		parameter.OutflowAveragePressure += domain.pressureBucket[parameter.OutflowBucketIndex[i]];
-	}
-	averagePressure = parameter.OutflowAveragePressure / parameter.OutflowBucketLength;
-
+	
 	for (iParticle = 0; iParticle<particle.totalNumber; iParticle++) {
 
 		if (particle.type[iParticle] == parameter.wallType || particle.type[iParticle] == parameter.dummyWallType || particle.type[iParticle] == parameter.typeNumberOfRigidParticle_forForcedMotion || particle.type[iParticle] == GHOST)continue;
