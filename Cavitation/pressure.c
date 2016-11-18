@@ -605,14 +605,26 @@ PRESSURE_updateAveragePressure(void) {
 
 	}
 
+	printf("Outflow Average Pressure\nNumbers: %d\n", parameter.OutflowBucketIndex);
+	
 	for (i = 0; i < parameter.OutflowBucketLength; i++) {
 		parameter.OutflowAveragePressure += domain.pressureBucket[parameter.OutflowBucketIndex[i]];
+		printf("%lf (%d) ", domain.pressureBucket[parameter.OutflowBucketIndex[i]], parameter.OutflowBucketIndex[i]);
 	}
-	parameter.OutflowAveragePressure /= parameter.OutflowBucketLength;
+
+	if(parameter.OutflowBucketLength > 0)parameter.OutflowAveragePressure /= parameter.OutflowBucketLength;
+	else parameter.OutflowAveragePressure = 0;
+	printf("\nAverage: %lf\n", parameter.OutflowAveragePressure);
 
 	for (iParticle = 0; iParticle < particle.totalNumber; iParticle++) {
 		if (particle.flagOfBoundaryCondition[iParticle] == GHOST_OR_DUMMY)continue;
 		if (particle.type[iParticle] == GHOST)continue;
+
+		BUCKET_findPressureBucketWhereParticleIsStored(&iX, &iY, &iZ, iParticle, particle.position);
+		if (iX == -1) {
+			particle.bucketPressure[iParticle] = 0;
+			continue;
+		}
 
 		particle.bucketPressure[iParticle] =
 			(NumberOfDimensions == 2) ? domain.pressureBucket[iX + iY * domain.pressureBucketNumber[XDIM]] - parameter.OutflowAveragePressure
