@@ -902,6 +902,12 @@ FILE_makeVtkFile( void ){
 	}
 	fprintf(fp, "\n");
 
+	fprintf(fp, "VECTORS velocity_vector float\n");
+	for (iParticle = 0; iParticle < particle.totalNumber; iParticle++) {
+		fprintf(fp, "%lf %lf %lf\n", particle.velocity[XDIM][iParticle], particle.velocity[YDIM][iParticle], particle.velocity[ZDIM][iParticle]);
+	}
+	fprintf(fp, "\n");
+
 	fprintf(fp, "SCALARS SourceTerm float 1\n");
 	fprintf(fp, "LOOKUP_TABLE SourceTerm\n");
 	for (iParticle = 0; iParticle<particle.totalNumber; iParticle++) {
