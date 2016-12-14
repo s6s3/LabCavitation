@@ -297,8 +297,8 @@ CAVITATION_calculateBuoyancy(void) {
 
 		}*/
 		voidrate = (NumberOfDimensions == 3)? 
-			4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) / (3 * pow(particle.averageDistance, 3)) : 
-			4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2) / pow(particle.averageDistance, 2);
+			4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) / (3 * pow(particle.averageDistance, 3)) + 4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) :
+			4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2) / pow(particle.averageDistance, 2) + 4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2);
 
 		for (iDim = 0; iDim < NumberOfDimensions; iDim++) {
 
