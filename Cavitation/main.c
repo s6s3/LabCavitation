@@ -81,7 +81,9 @@ main( int argumentCount, char **argumentVector ){
 		//OUTFLOW_correctOutflowVelocity();
 
 		//OUTFLOW_correctYamakawaOutflowVelocity2();
-		OUTFLOW_correctShibataOutflowVelocity();
+		
+		//àÍéûìIÇ…égÇÌÇ»Ç¢ÇÊÅ[
+		//OUTFLOW_correctShibataOutflowVelocity();
 
         CONVECTION_moveParticles( particle.position, particle.velocity );//err?
         

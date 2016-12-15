@@ -85,7 +85,7 @@ flagOfBubbleCalculationy(on/off)                   on
 --on--temperature(K)                               292.0
 --on--headPressure(Pa)                             101325.0
 #--------OutflowBoundaryCondition---------------------------------
-flagOfOutflowBoundaryCondition(on/off)             off
+flagOfOutflowBoundaryCondition(on/off)             on
 negativePressure(on/off)                           on
 --on--positionVector[XDIM]                         0.0
 --on--positionVector[YDIM]                         0.0
