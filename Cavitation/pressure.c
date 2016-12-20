@@ -151,7 +151,7 @@ PRESSURE_setSourceTerm( void ){
 				4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) / (3 * pow(particle.averageDistance, 3)) + 4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) :
 				4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2) / pow(particle.averageDistance, 2) + 4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2);
 			n0i = n0 * (1.0 - voidrate);
-           particle.sourceTermOfPressure[iParticle] = ( particle.particleNumberDensity[iParticle] - n0 )/( dt_squared * n0 ); 
+           particle.sourceTermOfPressure[iParticle] = ( particle.particleNumberDensity[iParticle] - n0i )/( dt_squared * n0i ); 
         }
 
 		/*if ((particle.particleNumberDensity[iParticle] / n0) < parameter.thresholdOfParticleNumberDensity_ratio && parameter.flagOfNegativePressure == ON 
