@@ -148,8 +148,8 @@ PRESSURE_setSourceTerm( void ){
 		}
 		else{
 			voidrate = (NumberOfDimensions == 3) ?
-				4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) / (3 * pow(particle.averageDistance, 3)) + 4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) :
-				4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2) / pow(particle.averageDistance, 2) + 4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2);
+				4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) * parameter.inflowNumberOfBubbles / (3 * pow(particle.averageDistance, 3)) + 4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 3) * parameter.inflowNumberOfBubbles / 3 :
+				4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2) * parameter.inflowNumberOfBubbles / pow(particle.averageDistance, 2) + 4 * M_PI * pow(particle.cavitationBubblesRadius[iParticle], 2) * parameter.inflowNumberOfBubbles;
 			n0i = n0 * (1.0 - voidrate);
            particle.sourceTermOfPressure[iParticle] = ( particle.particleNumberDensity[iParticle] - n0i )/( dt_squared * n0i ); 
         }
