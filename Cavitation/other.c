@@ -61,6 +61,8 @@ OTHER_changeParticleTypeIntoGhost( int iParticle ){
 
   particle.isInflow[iParticle] = FALSE;
 
+  particle.voidrateOfParticle[iParticle] = 0;
+
   STACK_push(&ghostStack, iParticle);
 
 }

@@ -153,6 +153,8 @@ PRESSURE_setSourceTerm( void ){
 			if (voidrate > 0.5) voidrate = 0.5;
 			
 			n0i = n0 * (1.0 - voidrate);
+			particle.voidrateOfParticle[iParticle] = voidrate;
+
            particle.sourceTermOfPressure[iParticle] = ( particle.particleNumberDensity[iParticle] - n0i )/( dt_squared * n0i ); 
         }
 

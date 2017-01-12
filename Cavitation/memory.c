@@ -278,9 +278,11 @@ MEMORY_allocateMemoryForParticleStructure( void ){
   particle.cavitationBubblesRadius = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.cavitationBubblesRadius");
 
   particle.bucketPressure = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.bucketPressure");
+  particle.voidrateOfParticle = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.voidrateOfParticle");
 
   for (iParticle = 0; iParticle < particle.totalNumber_upperLimit; iParticle++) {
 	  particle.bucketPressure[iParticle] = 0;
+	  particle.voidrateOfParticle[iParticle] = 0;
   }
 
 }

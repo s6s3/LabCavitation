@@ -102,6 +102,8 @@ typedef struct{
 
   double *bucketPressure;
 
+  double *voidrateOfParticle;
+
 }structParticle;
 
 

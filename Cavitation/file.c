@@ -887,6 +887,14 @@ FILE_makeVtkFile( void ){
 		   fprintf(fp,"%lf\n", diameter);
        }
        fprintf(fp,"\n");
+
+	   fprintf(fp, "SCALARS voidrateOfParticle double 1\n");
+	   fprintf(fp, "LOOKUP_TABLE voidrateOfParticle\n");
+	   for (iParticle = 0; iParticle<particle.totalNumber; iParticle++) {
+		   fprintf(fp, "%lf\n", particle.voidrateOfParticle[iParticle]);
+	   }
+	   fprintf(fp, "\n");
+
     }
     
     fprintf(fp,"VECTORS point_vectors float\n");
