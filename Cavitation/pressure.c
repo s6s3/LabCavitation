@@ -158,6 +158,12 @@ PRESSURE_setSourceTerm( void ){
            particle.sourceTermOfPressure[iParticle] = ( particle.particleNumberDensity[iParticle] - n0i )/( dt_squared * n0i ); 
         }
 
+		if (OUTFLOW_judgeBounds(particle.position[XDIM][iParticle], particle.position[YDIM][iParticle], particle.position[ZDIM][iParticle]) > -parameter.lengthOfFixedVelocityRegion * particle.averageDistance
+			&& OUTFLOW_judgeBounds(particle.position[XDIM][iParticle], particle.position[YDIM][iParticle], particle.position[ZDIM][iParticle]) <= 0) {
+			particle.sourceTermOfPressure[iParticle] = 0.0;
+
+		}
+
 		/*if ((particle.particleNumberDensity[iParticle] / n0) < parameter.thresholdOfParticleNumberDensity_ratio && parameter.flagOfNegativePressure == ON 
 			&& OUTFLOW_judgeBounds(particle.position[XDIM][iParticle], particle.position[YDIM][iParticle], particle.position[ZDIM][iParticle]) > -particle.averageDistance)
 			particle.sourceTermOfPressure[iParticle] = 0.0;*/
