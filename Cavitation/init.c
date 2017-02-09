@@ -29,7 +29,6 @@
 #include "distance.h"
 #include "maxmin.h"
 #include "init.h"
-#include "bubble.h"
 #include "outflow.h"
 #include "inflow.h"
 #include "cavitation.h"
@@ -68,87 +67,84 @@ stack                   ghostStack;
 void
 INIT_initializeParameters( int argumentCount,char **argumentVector ){
 
-  timer.clockAtStartingTime = clock();
+	timer.clockAtStartingTime = clock();
 
-  timer.iTimeStep = 0;
-  timer.iTimeStep_copy = -1;
+	timer.iTimeStep = 0;
+	timer.iTimeStep_copy = -1;
 
-  ghostStack = { 0 };
-  STACK_init(&ghostStack);
+	ghostStack = { 0 };
+	STACK_init(&ghostStack);
 
-  FILE_readInputFiles( argumentCount, argumentVector );
+	FILE_readInputFiles( argumentCount, argumentVector );
 
-  parameter.flagOfBiCG = OFF;
+	parameter.flagOfBiCG = OFF;
 
-  INFLOW_setInflowLevel();
+	INFLOW_setInflowLevel();
 
-  INFLOW_setParticleType();
+	INFLOW_setParticleType();
 
-  physicalProperty.saturatedVaporPressure = CAVITATION_getSaturatedVaporPressure(physicalProperty.temperature - 273);
+	physicalProperty.saturatedVaporPressure = CAVITATION_getSaturatedVaporPressure(physicalProperty.temperature - 273);
 
-  /*--- Memory of structParticle is allocated in the above FILE_readInputFiles(). ---*/
+	/*--- Memory of structParticle is allocated in the above FILE_readInputFiles(). ---*/
 
-  COPY_storeInitialParticleProperty();
+	COPY_storeInitialParticleProperty();
 
-  DISTANCE_transformUnitOfDistanceFromRatioToMeter();
+	DISTANCE_transformUnitOfDistanceFromRatioToMeter();
 
-  MAXMIN_setMaxMinOfRadii();
+	MAXMIN_setMaxMinOfRadii();
 
-  TIMER_initializeTimeFunctions();
+	TIMER_initializeTimeFunctions();
 
-  NZERO_calculateNZeroAndLambda( particle.averageDistance );
+	NZERO_calculateNZeroAndLambda( particle.averageDistance );
  
-  if(parameter.flagOfBubbleCalculation==ON){
-     Bubble_setBetaZero();
-  }
 
-  if (parameter.flagOfOutflowBoundaryCondition == ON) {
-	  if (NumberOfDimensions == 2)parameter.depthOfOutflow = 1.0;
-  }
+	if (parameter.flagOfOutflowBoundaryCondition == ON) {
+		if (NumberOfDimensions == 2)parameter.depthOfOutflow = 1.0;
+	}
 
-  //INFLOW_setInflowLevel();
+	//INFLOW_setInflowLevel();
 
-  NEIGH_initializeNeighborTable();
+	NEIGH_initializeNeighborTable();
 
-  MEMORY_allocateMemoryForCoefficientMatrixOfPressure();
+	MEMORY_allocateMemoryForCoefficientMatrixOfPressure();
 
-  if(parameter.flagOfForcedMotionOfRigidBody == ON ){
-    FORCEDMOTION_initializeForcedMotion(  &forcedMotionOfRigidBody
-					  ,parameter.nameOfSamplingDataFileForForcedMotionOfRigidBody, parameter.typeNumberOfRigidParticle_forForcedMotion );
+	if(parameter.flagOfForcedMotionOfRigidBody == ON ){
+		FORCEDMOTION_initializeForcedMotion(  &forcedMotionOfRigidBody
+							,parameter.nameOfSamplingDataFileForForcedMotionOfRigidBody, parameter.typeNumberOfRigidParticle_forForcedMotion );
 
-    /*
-    FORCEDMOTION_initializeForcedMotion(  &forcedMotionOfRigidBody
-					  ,parameter.nameOfSamplingDataFileForForcedMotionOfRigidBody );
-    */
-    FORCEDMOTION_mainFunctionOfForcedMotionOfRigidBody( &forcedMotionOfRigidBody );
-  }
+		/*
+		FORCEDMOTION_initializeForcedMotion(  &forcedMotionOfRigidBody
+							,parameter.nameOfSamplingDataFileForForcedMotionOfRigidBody );
+		*/
+		FORCEDMOTION_mainFunctionOfForcedMotionOfRigidBody( &forcedMotionOfRigidBody );
+	}
 
-  COPY_setInitialCoodinatesAndVelocities();
+	COPY_setInitialCoodinatesAndVelocities();
 
-  parameter.initTotalOutflow = OUTFLOW_getCurrentNumberOfFluidParticles();
+	parameter.initTotalOutflow = OUTFLOW_getCurrentNumberOfFluidParticles();
     
 
-  DOMAIN_initializeDomain();
+	DOMAIN_initializeDomain();
 
-  BUCKET_initializeBucket();
+	BUCKET_initializeBucket();
 
-  NEIGH_setNeighborTable( particle.position );//position = 
+	NEIGH_setNeighborTable( particle.position );//position = 
 
-  DENSITY_calculateParticleNumberDensity( particle.position );
+	DENSITY_calculateParticleNumberDensity( particle.position );
 
-  FILE_countNumberOfParticlesEachType();
+	FILE_countNumberOfParticlesEachType();
 
-  FILE_displayNumberOfParticles();
+	FILE_displayNumberOfParticles();
 
-  fflush(FpForLog);
+	fflush(FpForLog);
 
-  FILE_writeProfFile();
+	FILE_writeProfFile();
 
-  NEIGH_setNeighborTable( particle.position );//position = 
+	NEIGH_setNeighborTable( particle.position );//position = 
 
-  timer.clockAtBeginningOfMainLoop = clock();
+	timer.clockAtBeginningOfMainLoop = clock();
  
-  timer.iTimeStep_copy++;
+	timer.iTimeStep_copy++;
 
 }
 

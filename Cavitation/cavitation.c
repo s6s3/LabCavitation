@@ -7,7 +7,6 @@
 #include "weight.h"
 #include "extern.h"
 #include "cavitation.h"
-#include "Buoyancy.h" 
 #include "distance.h"
 #include "file.h"
 #include "gravity.h"
@@ -92,38 +91,6 @@ CAVITATION_calculateVolume(double diameter) {
 	volume = pow(diameter, NumberOfDimensions);
 
 	return(volume);
-}
-
-void
-CAVITATION_setBetaZero(void) {
-
-	int iParticle;
-	double influenceRadius;
-	double distanceIJ;
-	double cosine;
-	double Beta;
-
-	Beta = 0.0;
-
-	influenceRadius = CAVITATION_setInfluenceRadius();
-
-	for (iParticle = 0; iParticle<particle.totalNumber; iParticle++) {
-
-		if (particle.type[iParticle] == parameter.wallType || particle.type[iParticle] == parameter.dummyWallType)continue;
-
-		distanceIJ = DISTANCE_calculateDistanceBetweenParticles(particle.position, iParticle, parameter.numperOfParticleForCalculatingBeta);
-
-		if (distanceIJ>influenceRadius || iParticle == parameter.numperOfParticleForCalculatingBeta)continue;
-
-		cosine = (particle.position[YDIM][iParticle] - particle.position[YDIM][parameter.numperOfParticleForCalculatingBeta]) / distanceIJ;
-
-		if (cosine <= 0.0)continue;
-
-		Beta += (particle.position[YDIM][iParticle] - particle.position[YDIM][parameter.numperOfParticleForCalculatingBeta])*cosine*WEIGHT_calculateWeightFunction(distanceIJ, influenceRadius);
-
-	}
-
-	parameter.betaZeroOfParticles = Beta;
 }
 
 double

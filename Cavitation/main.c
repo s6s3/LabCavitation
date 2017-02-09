@@ -45,8 +45,7 @@
 #include "finalize.h"
 
 
-#include "bubble.h"
-#include "buoyancy.h"
+
 #include "outflow.h"
 #include "inflow.h"
 #include "cavitation.h"
@@ -78,9 +77,6 @@ main( int argumentCount, char **argumentVector ){
         
         VISCOSITY_calculateViscosity();
         
-		//OUTFLOW_correctOutflowVelocity();
-
-		//OUTFLOW_correctYamakawaOutflowVelocity2();
 		
 		//àÍéûìIÇ…égÇÌÇ»Ç¢ÇÊÅ[
 		//OUTFLOW_correctShibataOutflowVelocity();
@@ -116,7 +112,6 @@ main( int argumentCount, char **argumentVector ){
 		
         if(parameter.flagOfBubbleCalculation == ON){
             
-            //Bubble_calculateBubble();
 			CAVITATION_calculateBubble();
         }
         
@@ -124,7 +119,6 @@ main( int argumentCount, char **argumentVector ){
         
         COLLISION_calculateCollisionBetweenParticles();
         
-
         
         if( YES == TIMER_checkWhetherItIsTimeToFinishProgram() ) break;
         

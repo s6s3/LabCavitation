@@ -18,14 +18,6 @@ void MAXMIN_setInitialMaxMinValue( int *iParticle ){
 
     if(particle.type[jParticle] == GHOST) continue;
 
-	/*--- for Tank ---*/
-/*
-	if( parameter.flagOfTankCalculation == ON){
-	  if(particle.position[ZDIM][jParticle] <= 0.0) continue;
-	}
-*/
-
-
     for(iDim = 0; iDim < NumberOfDimensions; iDim++){
       particle.minPosition[iDim] = particle.position[iDim][jParticle];
       particle.maxPosition[iDim] = particle.position[iDim][jParticle];

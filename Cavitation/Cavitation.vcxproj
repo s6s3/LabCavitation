@@ -123,9 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bubble.c" />
     <ClCompile Include="bucket.c" />
-    <ClCompile Include="buoyancy.c" />
     <ClCompile Include="cavitation.c" />
     <ClCompile Include="collision.c" />
     <ClCompile Include="convection.c" />
@@ -159,9 +157,7 @@
     <ClCompile Include="weight.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bubble.h" />
     <ClInclude Include="bucket.h" />
-    <ClInclude Include="buoyancy.h" />
     <ClInclude Include="cavitation.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="convection.h" />

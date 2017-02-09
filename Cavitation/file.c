@@ -12,7 +12,6 @@
 #include "timer.h"
 #include "other.h"
 #include "file.h"
-#include "bubble.h"
 #include "mathe.h"
 #include "inflow.h"
 #include "stack.h"

@@ -13,9 +13,6 @@ CAVITATION_calculateCosine(double distanceIJ, int iParticle, int jParticle);
 double
 CAVITATION_setInfluenceRadius(void);
 
-void
-CAVITATION_setBetaZero(void);
-
 double
 CAVITATION_calculateDifferenceRadius(int iParticle, double averagePressure);
 
