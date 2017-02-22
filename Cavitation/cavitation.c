@@ -20,7 +20,7 @@ CAVITATION_calculateBubble(void) {
 
 	if (timer.simulationTime < parameter.timeToUpdateAveragePressure)return;
 
-	CAVITATION_calculateBubbleRising();
+	//CAVITATION_calculateBubbleRising();
 
 	CAVITATION_surfaceJudgement();
 
@@ -171,13 +171,18 @@ CAVITATION_calculateBubbleRising(void) {
 	
 	for (iParticle = 0; iParticle<particle.totalNumber; iParticle++) {
 
-		if (particle.type[iParticle] == parameter.wallType || particle.type[iParticle] == parameter.dummyWallType || particle.type[iParticle] == parameter.typeNumberOfRigidParticle_forForcedMotion || particle.type[iParticle] == GHOST)continue;
+		if (particle.type[iParticle] == parameter.wallType 
+			|| particle.type[iParticle] == parameter.dummyWallType 
+			|| particle.type[iParticle] == parameter.typeNumberOfRigidParticle_forForcedMotion 
+			|| particle.type[iParticle] == GHOST)continue;
 
 
 		particle.cavitationBubblesRadius[iParticle] += CAVITATION_calculateDifferenceRadius(iParticle, averagePressure);
 
 		if (particle.cavitationBubblesRadius[iParticle] < 0)particle.cavitationBubblesRadius[iParticle] = 0;
 
+
+		/*
 		risingVelocity = CAVITATION_calculateRisingVelocity(particle.cavitationBubblesRadius[iParticle]*2);
 
 		if (risingVelocity <= 0.0)continue;
@@ -206,6 +211,8 @@ CAVITATION_calculateBubbleRising(void) {
 			particle.cavitationBubblesRadius[iParticle] -= pow(aIJ, 1.0 / NumberOfDimensions)*particle.cavitationBubblesRadius[iParticle];
 
 		}
+		*/
+
 	}
 }
 
