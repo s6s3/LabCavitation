@@ -35,7 +35,7 @@ COPY_updateParticleProperty( void ){
   COPY_copy1dimDoubleArray( particle.totalNumber, particle.moleOfBubbles_previous, particle.moleOfBubbles);
   COPY_copy1dimDoubleArray( particle.totalNumber, particle.numberOfBubbles_previous, particle.numberOfBubbles);
   COPY_copy1dimDoubleArray( particle.totalNumber, particle.concentrationOfImpurities_previous, particle.concentrationOfImpurities);
-  timer.iTimeStep_copy=timer.iTimeStep+1;
+  timer.iTimeStep_forcedMotion=timer.iTimeStep+1;
 }
 
 

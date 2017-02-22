@@ -47,9 +47,9 @@ FORCEDMOTION_mainFunctionOfForcedMotionOfRigidBody( structForcedMotion  *forcedM
   int  flag;
   
   power=0.0;
-  flag=timer.iTimeStep-timer.iTimeStep_copy;
+  flag=timer.iTimeStep-timer.iTimeStep_forcedMotion;
   
-  if(timer.iTimeStep_copy!=-1){
+  if(timer.iTimeStep_forcedMotion!=-1){
      if(parameter.flagOfOutputOfTorqueFile == ON){
         if(flag==0){
            fp1 = FORCEDMOTION_setTorqueCalculationFile();
@@ -68,12 +68,12 @@ FORCEDMOTION_mainFunctionOfForcedMotionOfRigidBody( structForcedMotion  *forcedM
   OBJECT_setVelocityOfObject(  &forcedMotion->object );
   OBJECT_updateObjectProperty( &forcedMotion->object);
   
-  if(timer.iTimeStep_copy!=-1){
+  if(timer.iTimeStep_forcedMotion!=-1){
      if(parameter.flagOfOutputOfTorqueFile == ON){
         if(flag==0){
            power+=FORCEDMOTION_TorqueCalculationForStirredTank(2);
            FORCEDMOTION_endTorqueCalculationFile(fp1);
-           timer.iTimeStep_copy++;
+           timer.iTimeStep_forcedMotion++;
         }else{
            power+=FORCEDMOTION_TorqueCalculationForStirredTank(4);
            FORCEDMOTION_endTorqueCalculationFile(fp1);

@@ -226,27 +226,14 @@ MEMORY_allocateMemoryForParticleStructure( void ){
   }
 
 
-  if(parameter.flagOfBiCG == ON){
+  particle.velocity_component = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.velocity_component");
 
-    particle.velocity_component  = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit*2, "particle.velocity_component");
+  particle.pressure = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.pressure");
+  particle.sourceTermOfPressure = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.sourceTermOfPressure");
 
-    particle.pressure          = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit * 2, "particle.pressure"         );
-    particle.sourceTermOfPressure   = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit * 2, "particle.sourceTermOfPressure");
+  particle.sourceTermOfViscosity = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.sourceTermOfViscosity");
 
-    particle.sourceTermOfViscosity   = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit * 2, "particle.sourceTermOfViscosity");
-
-  }else{
-
-    particle.velocity_component  = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.velocity_component");
-
-    particle.pressure          = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.pressure"         );
-    particle.sourceTermOfPressure   = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.sourceTermOfPressure");
-
-    particle.sourceTermOfViscosity   = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.sourceTermOfViscosity");
-
-    particle.velocity_component  = MEMORY_allocateMemoryFor1dimDoubleArray(    particle.totalNumber_upperLimit, "particle.velocity_component");
-
-  }
+  particle.velocity_component = MEMORY_allocateMemoryFor1dimDoubleArray(particle.totalNumber_upperLimit, "particle.velocity_component");
 
   particle.pressure_previous = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.pressure_previous");
 
@@ -258,15 +245,8 @@ MEMORY_allocateMemoryForParticleStructure( void ){
   particle.particleNumberDensity_previous = MEMORY_allocateMemoryFor1dimDoubleArray( particle.totalNumber_upperLimit, "particle.particleNumberDensity_previous");
   particle.particleNumberDensity_eachParticleType = MEMORY_allocateMemoryFor2dimDoubleArray( particle.totalNumber_upperLimit,  parameter.numberOfParticleTypes, "particleNumberDensity_eachParticleType");
 
-  if(parameter.flagOfBiCG == ON){
-    particle.numberOfNeighborParticles_large = MEMORY_allocateMemoryFor1dimIntArray( particle.totalNumber_upperLimit * 2, "particle.numOfNeighborParticles_large");
-
-    particle.flagOfBoundaryCondition = MEMORY_allocateMemoryFor1dimIntArray( particle.totalNumber_upperLimit * 2, "flagOfBoundaryCondition");
-  }else{
-    particle.numberOfNeighborParticles_large = MEMORY_allocateMemoryFor1dimIntArray( particle.totalNumber_upperLimit, "particle.numOfNeighborParticles_large");
-
-    particle.flagOfBoundaryCondition = MEMORY_allocateMemoryFor1dimIntArray( particle.totalNumber_upperLimit, "flagOfBoundaryCondition");
-  }
+  particle.numberOfNeighborParticles_large = MEMORY_allocateMemoryFor1dimIntArray(particle.totalNumber_upperLimit, "particle.numOfNeighborParticles_large");
+  particle.flagOfBoundaryCondition = MEMORY_allocateMemoryFor1dimIntArray(particle.totalNumber_upperLimit, "flagOfBoundaryCondition");
 
   particle.numberOfNeighborParticles_small = MEMORY_allocateMemoryFor1dimIntArray( particle.totalNumber_upperLimit * 2, "particle.numOfNeighborParticles_small");
   particle.numberOfNeighborParticles_small = MEMORY_allocateMemoryFor1dimIntArray( particle.totalNumber_upperLimit, "particle.numOfNeighborParticles_small");
@@ -291,27 +271,12 @@ MEMORY_allocateMemoryForParticleStructure( void ){
 
 void
 MEMORY_allocateMemoryForCoefficientMatrixOfPressure( void ){
+	particle.coefficientMatrixOfPressure = MEMORY_allocateMemoryFor2dimDoubleArray(particle.totalNumber_upperLimit
+		, parameter.capacityOfNeighborTable_large + 1, "particle.coefficientMatrixOfPressure");
 
 
-  if(parameter.flagOfBiCG == ON){
-    particle.coefficientMatrixOfPressure = MEMORY_allocateMemoryFor2dimDoubleArray( particle.totalNumber_upperLimit * 2
-										    ,parameter.capacityOfNeighborTable_large + 1, "particle.coefficientMatrixOfPressure"   );
-      
-
-particle.coefficientMatrixOfViscosity = MEMORY_allocateMemoryFor2dimDoubleArray( particle.totalNumber_upperLimit * 2
-                                            ,parameter.capacityOfNeighborTable_large + 1, "particle.coefficientMatrixOfPressure"   );
-
-      
-  }else{
-    particle.coefficientMatrixOfPressure = MEMORY_allocateMemoryFor2dimDoubleArray( particle.totalNumber_upperLimit
-										    ,parameter.capacityOfNeighborTable_large + 1, "particle.coefficientMatrixOfPressure"   );
-      
-    
-    particle.coefficientMatrixOfViscosity = MEMORY_allocateMemoryFor2dimDoubleArray( particle.totalNumber_upperLimit
-                                            ,parameter.capacityOfNeighborTable_large + 1, "particle.coefficientMatrixOfPressure"   );
-
-    
-  }
+	particle.coefficientMatrixOfViscosity = MEMORY_allocateMemoryFor2dimDoubleArray(particle.totalNumber_upperLimit
+		, parameter.capacityOfNeighborTable_large + 1, "particle.coefficientMatrixOfPressure");
 
   /*--- where, "+1" is necessary because the initial space is used as the particle's own coefficient. ---*/
 

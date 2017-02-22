@@ -387,22 +387,17 @@ NEIGH_displayRecommendedCapacityOfNeighborTable( void ){
 
 void
 NEIGH_allocateMemoryForNeighborTable( void ){
+	particle.neighborTable_large = MEMORY_allocateMemoryFor2dimIntArray( particle.totalNumber_upperLimit, parameter.capacityOfNeighborTable_large, "particle.neighborTable_large" );
+  
 
+	if( parameter.numberOfNeighborTables == 1 ) return;
+	if( parameter.maxRadius_ratio == parameter.minRadius_ratio){
+		parameter.numberOfNeighborTables = 1;
+		return;
+	}
 
-  if(parameter.flagOfBiCG == ON){
-    particle.neighborTable_large = MEMORY_allocateMemoryFor2dimIntArray( particle.totalNumber_upperLimit * 2, parameter.capacityOfNeighborTable_large, "particle.neighborTable_large" );
-  }else{
-    particle.neighborTable_large = MEMORY_allocateMemoryFor2dimIntArray( particle.totalNumber_upperLimit, parameter.capacityOfNeighborTable_large, "particle.neighborTable_large" );
-  }
-
-  if( parameter.numberOfNeighborTables == 1 ) return;
-  if( parameter.maxRadius_ratio == parameter.minRadius_ratio){
-	parameter.numberOfNeighborTables = 1;
-	return;
-  }
-
-  particle.neighborTable_small = MEMORY_allocateMemoryFor2dimIntArray( particle.totalNumber_upperLimit
-                             ,parameter.capacityOfNeighborTable_small,"particle.neighborTable_small");
+	particle.neighborTable_small = MEMORY_allocateMemoryFor2dimIntArray( particle.totalNumber_upperLimit
+									,parameter.capacityOfNeighborTable_small,"particle.neighborTable_small");
 
 }
 

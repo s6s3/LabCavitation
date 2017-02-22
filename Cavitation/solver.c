@@ -103,9 +103,7 @@ SOLVER_conjugateGradientMethod(
     int      iIteration;
 	double   normOfSourceTerm;
 
-	//fprintf(FpForLog, "flagOfBiCG:%d\n", parameter.flagOfBiCG);
-
-
+	
     solution_next  = MEMORY_allocateMemoryFor1dimDoubleArray( totalNumber, "solution_next [in solver.c]" );
     remainder      = MEMORY_allocateMemoryFor1dimDoubleArray( totalNumber, "remainder     [in solver.c]" );
     remainder_next = MEMORY_allocateMemoryFor1dimDoubleArray( totalNumber, "remainder_next[in solver.c]" );

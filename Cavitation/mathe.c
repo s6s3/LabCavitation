@@ -35,31 +35,9 @@ MATHE_multiplyMatrixByVector(
 
 
 	for(iParticle=0; iParticle < totalNum; iParticle++){
-
 		if ( flagOfBoundaryCondition[iParticle] != INNER_PARTICLE   ) continue;
 
-		
-		if(parameter.flagOfBiCG == ON){
-
-			if( iParticle < particle.totalNumber){
-
-				answer[iParticle] = matrix[iParticle][0] * vector[iParticle + particle.totalNumber];
-
-			}else{
-
-				answer[iParticle] = matrix[iParticle][0] * vector[iParticle - particle.totalNumber];
-
-			}
-
-		}else{
-
-			answer[iParticle] = matrix[iParticle][0] * vector[iParticle];
-
-		}
-
-		/*
-			answer[iParticle] = matrix[iParticle][0] * vector[iParticle];
-		*/
+		answer[iParticle] = matrix[iParticle][0] * vector[iParticle];
 
 		for(iNeigh=0; iNeigh <  numberOfNeighborParticles[iParticle]; iNeigh++){
 
@@ -72,7 +50,6 @@ MATHE_multiplyMatrixByVector(
 
 		}
 	}
-
 }
 
 void

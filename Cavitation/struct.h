@@ -123,7 +123,7 @@ typedef struct{
   double finishTime;
 
   int    iTimeStep;
-  int    iTimeStep_copy;
+  int    iTimeStep_forcedMotion;
 
   int    finishTimeStep;
 
@@ -273,9 +273,6 @@ typedef struct{
 
 
   int    flagOfDivisionOfProfFile;
-  int    flagOfBiCG;
-
-
   int    flagOfDivisionOfVtkFile;
 
 

@@ -70,14 +70,12 @@ INIT_initializeParameters( int argumentCount,char **argumentVector ){
 	timer.clockAtStartingTime = clock();
 
 	timer.iTimeStep = 0;
-	timer.iTimeStep_copy = -1;
+	timer.iTimeStep_forcedMotion = -1;
 
 	ghostStack = { 0 };
 	STACK_init(&ghostStack);
 
 	FILE_readInputFiles( argumentCount, argumentVector );
-
-	parameter.flagOfBiCG = OFF;
 
 	INFLOW_setInflowLevel();
 
@@ -144,7 +142,7 @@ INIT_initializeParameters( int argumentCount,char **argumentVector ){
 
 	timer.clockAtBeginningOfMainLoop = clock();
  
-	timer.iTimeStep_copy++;
+	timer.iTimeStep_forcedMotion++;
 
 }
 
