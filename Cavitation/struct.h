@@ -328,11 +328,8 @@ typedef struct{
 
 
   double relaxationCoefficientForSorSolver;
-
-  double betaZeroOfParticles;
-  
+	
   int    flagOfBubbleCalculation;
-  int    numperOfParticleForCalculatingBeta;
   char   nameOfBubbleInputFile[SIZE_OF_FILE_NAME];
     
   int    flagOfTanakaAndMasunagaModel;

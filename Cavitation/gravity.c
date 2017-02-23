@@ -11,19 +11,17 @@
 
 void
 GRAVITY_calculateGravity( void ){
+	int iParticle;
+	int iDim;
 
-  int iParticle;
-  int iDim;
+	for(iParticle= 0; iParticle < particle.totalNumber; iParticle++){
+		if ( particle.type[iParticle]==GHOST ) continue;
+		if ( particle.type[iParticle]==parameter.dummyWallType ) continue;
+		if ( particle.type[iParticle]==parameter.wallType ) continue;
 
-  for(iParticle= 0; iParticle < particle.totalNumber; iParticle++){
-
-    if ( particle.type[iParticle]==GHOST ) continue;
-    if ( particle.type[iParticle]==parameter.dummyWallType ) continue;
-    if ( particle.type[iParticle]==parameter.wallType ) continue;
-
-    for(iDim= 0; iDim < NumberOfDimensions; iDim++){
-      particle.velocity[iDim][iParticle] += physicalProperty.gravity[iDim] * timer.dt;
-    }
-  }
+		for(iDim= 0; iDim < NumberOfDimensions; iDim++){
+			particle.velocity[iDim][iParticle] += physicalProperty.gravity[iDim] * timer.dt;
+		}
+	}
 
 }

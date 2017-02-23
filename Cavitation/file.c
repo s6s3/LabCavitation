@@ -656,22 +656,20 @@ FILE_displayGridInformation( void ){
 
 void
 FILE_writeCalculationResultInFile( void ){
+	if( YES == TIMER_checkWhetherItIsTimeToWriteProfFile()){
+
+	if(timer.flagOfDisplayingStateOfTimeStep == OFF){
+		TIMER_displayStateOfTimeStep( stderr );
+	}
+
+	FILE_writeProfFile();
+
+	}else if(timer.flagOfDisplayingStateOfTimeStep == ON){
+		fprintf(stderr," \n");
+	}
 
 
-  if( YES == TIMER_checkWhetherItIsTimeToWriteProfFile()){
-
-    if(timer.flagOfDisplayingStateOfTimeStep == OFF){
-      TIMER_displayStateOfTimeStep( stderr );
-    }
-
-    FILE_writeProfFile();
-
-  }else if(timer.flagOfDisplayingStateOfTimeStep == ON){
-    fprintf(stderr," \n");
-  }
-
-
-  FILE_writePressureFile();
+	FILE_writePressureFile();
 
 }
 
@@ -1499,10 +1497,6 @@ FILE_readDataFile( void ){
   FILE_skipComment(fp);
   FILE_scanChar( fp, parameter.nameOfBubbleInputFile
                   ,"parameter.nameOfBubbleInputFile");
-  
-  FILE_skipComment(fp);
-  FILE_scanInt( fp, &parameter.numperOfParticleForCalculatingBeta
-                  ,"parameter.numperOfParticleForCalculatingBeta");
     
   FILE_skipComment(fp);
   FILE_scanDouble( fp,&physicalProperty.massDensityOfBubble

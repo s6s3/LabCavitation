@@ -65,44 +65,43 @@ TIMER_initializeTimeFunctions( void ){
 
 void
 TIMER_setDtAutomatically( void ){
+	double dt_previous;
+	double upperLimitOfDt;
+	double smallerDt;
 
-  double dt_previous;
-  double upperLimitOfDt;
-  double smallerDt;
-
-  double dt_byCourantNumber;
-  double dt_byDiffusionNumber;
-
-
-  if(timer.iTimeStep == 0){
-    timer.dt = timer.dt_initial;
-  }
+	double dt_byCourantNumber;
+	double dt_byDiffusionNumber;
 
 
-  dt_previous        = timer.dt;
-  dt_byCourantNumber = TIMER_calculateDtWithCourantNumberInMind();
+	if(timer.iTimeStep == 0){
+		timer.dt = timer.dt_initial;
+	}
 
 
-  if( parameter.flagOfViscosityCalculation == ON && parameter.flagOfHighViscosityCalculation != ON){
-    dt_byDiffusionNumber = TIMER_calculateDtWithDiffusionNumberInMind();
-  }else{
-    dt_byDiffusionNumber = dt_byCourantNumber;
-  }
+	dt_previous        = timer.dt;
+	dt_byCourantNumber = TIMER_calculateDtWithCourantNumberInMind();
 
 
-  upperLimitOfDt = dt_previous * timer.upperLimitOfChangeRateOfDt;
+	if( parameter.flagOfViscosityCalculation == ON && parameter.flagOfHighViscosityCalculation != ON){
+		dt_byDiffusionNumber = TIMER_calculateDtWithDiffusionNumberInMind();
+	}else{
+		dt_byDiffusionNumber = dt_byCourantNumber;
+	}
 
-  smallerDt      = MAXMIN_returnSmallerValue( dt_byCourantNumber, dt_byDiffusionNumber );
-  smallerDt      = MAXMIN_returnSmallerValue( smallerDt,          upperLimitOfDt       );
-  smallerDt      = MAXMIN_returnSmallerValue( smallerDt,          timer.maxDt          );
 
-  if( timer.iTimeStep == 0){
-    smallerDt = MAXMIN_returnSmallerValue(smallerDt, timer.dt_initial);
-  }
+	upperLimitOfDt = dt_previous * timer.upperLimitOfChangeRateOfDt;
 
-  timer.dt = smallerDt;
+	smallerDt      = MAXMIN_returnSmallerValue( dt_byCourantNumber, dt_byDiffusionNumber );
+	smallerDt      = MAXMIN_returnSmallerValue( smallerDt,          upperLimitOfDt       );
+	smallerDt      = MAXMIN_returnSmallerValue( smallerDt,          timer.maxDt          );
 
-  TIMER_checkThatDtIsNotTooSmall();
+	if( timer.iTimeStep == 0){
+		smallerDt = MAXMIN_returnSmallerValue(smallerDt, timer.dt_initial);
+	}
+
+	timer.dt = smallerDt;
+
+	TIMER_checkThatDtIsNotTooSmall();
 
 }
 

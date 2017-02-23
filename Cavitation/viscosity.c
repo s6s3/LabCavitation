@@ -19,7 +19,6 @@
 
 void
 VISCOSITY_calculateViscosity( void ){
-
   int iParticle, jParticle;
   int iDim;
   int iNeigh;   

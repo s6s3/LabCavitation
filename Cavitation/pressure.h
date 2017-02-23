@@ -51,7 +51,7 @@ void
 PRESSURE_displayWarnigMessageForNoDirichletBoundaryCondition( int iParticle );
 /*******************************************10.22追加******************************************/
 void
-PRESSURE_correctPressure( void );
+PRESSURE_correctPressureWithHighViscosity( void );
 
 void
 PRESSURE_updateAveragePressure(void);

@@ -50,7 +50,7 @@ PRESSURE_calculatePressure( void ){
     SOLVER_solveSimultaniousEquations();
     
     if(parameter.flagOfHighViscosityCalculation == ON){
-       PRESSURE_correctPressure();
+       PRESSURE_correctPressureWithHighViscosity();
     }
 
 	PRESSURE_setSurfacePressureZero();//’Ç‰Á
@@ -540,7 +540,7 @@ PRESSURE_displayWarnigMessageForNoDirichletBoundaryCondition( int iParticle ){
 }
 
 void
-PRESSURE_correctPressure( void ){
+PRESSURE_correctPressureWithHighViscosity( void ){
     
     int iParticle;
     double kinematicViscosity = physicalProperty.kinematicViscosity;

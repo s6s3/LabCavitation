@@ -79,9 +79,8 @@ flagOfViscosityCalculation(on/off)                 on
 #--------Bubble---------------------------------------------------
 flagOfBubbleCalculationy(on/off)                   on                 
 --on--nameOfInputfile                              ./input/input.bubble
---on--numperOfParticleForCalculatingBeta           574                        
 --on--massDensityOfBubble(kg/m^3)                  8.98
---on--gassConstant(J/K*mol)                        8.3144621
+--on--gasConstant(J/K*mol)                         8.3144621
 --on--temperature(K)                               292.0
 --on--headPressure(Pa)                             101325.0
 #--------OutflowBoundaryCondition---------------------------------

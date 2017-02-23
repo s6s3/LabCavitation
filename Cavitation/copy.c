@@ -26,16 +26,16 @@ COPY_storeInitialParticleProperty( void ){
 
 void
 COPY_updateParticleProperty( void ){
+	COPY_copy2dimDoubleArray( 3, particle.totalNumber, particle.position_previous,      particle.position);
+	COPY_copy2dimDoubleArray( 3, particle.totalNumber, particle.velocity_previous,      particle.velocity);
+	COPY_copy1dimDoubleArray( particle.totalNumber, particle.pressure_previous,              particle.pressure);
+	if(parameter.flagOfKondoAndKoshizukaModel == OFF)COPY_copy1dimDoubleArray( particle.totalNumber, particle.particleNumberDensity_previous, particle.particleNumberDensity);
 
-  COPY_copy2dimDoubleArray( 3, particle.totalNumber, particle.position_previous,      particle.position);
-  COPY_copy2dimDoubleArray( 3, particle.totalNumber, particle.velocity_previous,      particle.velocity);
-  COPY_copy1dimDoubleArray( particle.totalNumber, particle.pressure_previous,              particle.pressure);
-  if(parameter.flagOfKondoAndKoshizukaModel == OFF)COPY_copy1dimDoubleArray( particle.totalNumber, particle.particleNumberDensity_previous, particle.particleNumberDensity);
+	COPY_copy1dimDoubleArray( particle.totalNumber, particle.moleOfBubbles_previous, particle.moleOfBubbles);
+	COPY_copy1dimDoubleArray( particle.totalNumber, particle.numberOfBubbles_previous, particle.numberOfBubbles);
+	COPY_copy1dimDoubleArray( particle.totalNumber, particle.concentrationOfImpurities_previous, particle.concentrationOfImpurities);
+	timer.iTimeStep_forcedMotion=timer.iTimeStep+1;
 
-  COPY_copy1dimDoubleArray( particle.totalNumber, particle.moleOfBubbles_previous, particle.moleOfBubbles);
-  COPY_copy1dimDoubleArray( particle.totalNumber, particle.numberOfBubbles_previous, particle.numberOfBubbles);
-  COPY_copy1dimDoubleArray( particle.totalNumber, particle.concentrationOfImpurities_previous, particle.concentrationOfImpurities);
-  timer.iTimeStep_forcedMotion=timer.iTimeStep+1;
 }
 
 

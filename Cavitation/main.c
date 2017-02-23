@@ -96,12 +96,11 @@ main( int argumentCount, char **argumentVector ){
         
         OTHER_checkThatParticlesAreNotAllGhost();
         
-        PRESSURE_calculatePressure();//ERROR!
+        PRESSURE_calculatePressure();
         
         GRADIENT_correctParticleVelocityAndPositionUsingPressureGradient();
         
         if(parameter.flagOfForcedMotionOfRigidBody == ON ){
-            
             FORCEDMOTION_mainFunctionOfForcedMotionOfRigidBody( &forcedMotionOfRigidBody );
             
         }
@@ -110,14 +109,12 @@ main( int argumentCount, char **argumentVector ){
 		PRESSURE_updateAveragePressure();
 		
         if(parameter.flagOfBubbleCalculation == ON){
-            
 			CAVITATION_calculateBubble();
         }
         
         FILE_writeCalculationResultInFile();
         
         COLLISION_calculateCollisionBetweenParticles();
-        
         
         if( YES == TIMER_checkWhetherItIsTimeToFinishProgram() ) break;
         

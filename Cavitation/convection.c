@@ -9,7 +9,6 @@
 
 void
 CONVECTION_moveParticles( double **position, double **velocity){
-
 	int iParticle;
 	int iDim;
   
